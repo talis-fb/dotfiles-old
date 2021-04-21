@@ -1,7 +1,5 @@
 #!/bin/bash
 
-hasvim=`vim --version`
-
 echo 'Qual OS esta executando isso?'
 echo -e "[1] Arch Linux \t [2] Debian/Ubuntu\t[x] Não baixar nada"
 echo -n '>'; read osRunning;
