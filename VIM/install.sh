@@ -7,12 +7,12 @@ echo -n '>'; read osRunning;
 function archInstall(){
 	echo 'PROGRAMAS PARA INSTALAR'
 	echo -e '\t-Vim \n\t-Ranger \n\t-Tmux \n\t-NodeJS \n\t-NPM \n'
-	sudo pacman -S vim ranger tmux nodejs npm git curl
+	sudo pacman -S gvim ranger tmux nodejs npm git curl
 }
 function debianInstall(){
 	echo 'PROGRAMAS PARA INSTALAR'
 	echo -e '\t-Vim \n\t-Ranger \n\t-Tmux \n\t-Node \n\t-NPM \n'
-	sudo apt install vim tmux ranger git curl
+	sudo apt install vim vim-gtk tmux ranger git curl
 	echo -e 'NodeJs e NPM precisam de uma instalação por fora'
 }
 
