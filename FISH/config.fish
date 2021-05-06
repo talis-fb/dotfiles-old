@@ -5,16 +5,18 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 # ranger
-alias rcd="ranger"
+alias cdr="ranger"
 
 # git
 alias gst="git status"
+alias gdff="git diff"
 alias gad="git add"
-alias gc="git commit"
+alias gcom="git commit"
+alias gcmm="git commit -m"
 alias gcl="git clone"
-alias gb="git branch"
+alias gbr="git branch"
 alias gck="git checkout"
-alias gp="git push"
+alias gpush="git push"
 
 # firefox
 alias fire="firefox --private-window"

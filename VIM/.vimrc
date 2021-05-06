@@ -99,6 +99,11 @@ set autoindent
 " -------------------------
 "          ATALHOS
 " -------------------------
+"
+"
+"Atalho para criar linhas sem ir para o modo de inserção
+nnoremap go o<Esc>
+nnoremap gO O<Esc>
 
 "Atalhos de save
 map <C-s> :w<CR> 
@@ -111,6 +116,9 @@ inoremap <C-v> <Esc>"+pi
 
 "Ctrl+C no modo VISUAL
 vnoremap <C-c> "+y
+
+"Selecionar tudo no modo seleção
+vnoremap <C-a> <Esc>ggVG
 
 
 
@@ -195,9 +203,14 @@ map <Leader>8 8gt<CR>
 map <Leader>9 9gt<CR>
 map <Leader>w :tabclose<CR>
 
+" Tmb pode usar: Ctrl+PageUp , gT
 map <Leader>q :tabprevious<CR>
+" Tmb pode usar: Ctrl+PageDown , gt
 map <Leader>e :tabnext<CR>
 
+" Vai para a ultima aba ativa
+au TabLeave * let g:lasttab = tabpagenr()
+map <silent> <Leader><TAB> :exe "tabn ".g:lasttab<cr>
 
 "---------------
 "    BUFFERS
@@ -238,6 +251,7 @@ endfunction
 " CONFIGURAÇÔES EXCLUSIVAS PARA CADA TIPO DE ARQUIVO
 " ---------------------------------------------------
 au FileType javascript call JavaScriptFile()
+au FileType typescript call JavaScriptFile()
 au FileType css call CssFile()
 au FileType html call HtmlFile()
 au FileType python call PythonFile()
@@ -248,8 +262,8 @@ au FileType markdown call MarkdownFile()
 function! JavaScriptFile()
 	" OMNI => Ctrl+x + Ctrl+o
 	set omnifunc=javascriptcomplete#CompleteJS
-	nnoremap <C-c> I// <Esc>
-	vmap <C-c> :norm I//<CR>
+	nnoremap <C-k> I// <Esc>
+	vmap <C-k> :norm I//<CR>
 	imap <C-p> console.log(
 	nmap <Leader>r :!node %<CR>
 endfunction	
@@ -268,7 +282,8 @@ endfunction
 
 
 function! PythonFile()
-	nnoremap <C-c> I# <Esc>
+	nnoremap <C-k> I# <Esc>
+	vmap <C-k> :norm I#<CR>
 	imap <C-p> print()<Esc>hi
 	nmap <Leader>r :!python3 %<CR>
 endfunction	
