@@ -10,7 +10,7 @@ alias cdr="ranger"
 # git
 alias gst="git status"
 alias gdff="git diff"
-alias gad="git add"
+alias gadd="git add"
 alias gcom="git commit"
 alias gcmm="git commit -m"
 alias gcl="git clone"
