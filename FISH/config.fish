@@ -17,6 +17,8 @@ alias gcl="git clone"
 alias gbr="git branch"
 alias gck="git checkout"
 alias gpush="git push"
+alias git-config-email="git config --global user.email"
+alias git-config-name="git config --global user.name"
 
 # firefox
 alias fire="firefox --private-window"
