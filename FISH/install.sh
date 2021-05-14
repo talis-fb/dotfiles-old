@@ -4,6 +4,7 @@ echo 'Qual OS esta executando isso?'
 echo -e "[1] Arch Linux \t [2] Debian/Ubuntu\t[x] Não baixar"
 echo -n '>'; read osRunning;
 
+mkdir -p ~/.config/fish
 
 if [ $osRunning = 1 ]; then
 	echo '1) Instalar FISH'
