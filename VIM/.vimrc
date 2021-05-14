@@ -247,6 +247,13 @@ function! s:check_back_space() abort
 endfunction
 
 
+"-----------------
+" CAPS LOCK = ESC
+"-----------------
+au VimEnter * silent :!setxkbmap -option caps:escape
+
+
+
 " ---------------------------------------------------
 " CONFIGURAÇÔES EXCLUSIVAS PARA CADA TIPO DE ARQUIVO
 " ---------------------------------------------------
