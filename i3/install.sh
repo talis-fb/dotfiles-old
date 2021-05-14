@@ -8,7 +8,7 @@ echo 'PACOTES NECESSARIOS PARA RODAR ESSE SCRIPT:'
 echo -e '\t-base-devel'
 echo -e '\t-git'
 
-sudo pacman -S i3 dmenu rofi feh
+sudo pacman -S i3 dmenu rofi feh lxappearance
 
 cd AURs/
 git clone https://aur.archlinux.org/polybar.git
@@ -28,3 +28,9 @@ cp * ~/.config/polybar
 
 echo ' # SELECIONAR TEMA DO ROFI'
 rofi-theme-selector
+
+echo ''
+echo ''
+echo '  -- ATENÇÃO --'
+echo 'Para mudar o tema do sistema e o IconTheme basta executar: lxappearance'
+
