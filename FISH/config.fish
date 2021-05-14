@@ -27,3 +27,6 @@ alias npmi-s="npm i --save"
 alias npmi-dv="npm i --save-dev"
 
 alias ll="ls -la"
+
+export VISUAL=vim;
+export EDITOR=vim;
