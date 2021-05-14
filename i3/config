@@ -55,7 +55,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # ROFI
-bindsym $mod+d exec --no-startup-id "rofi -show drun -font \\"DejaVu 9\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+bindsym $mod+d exec --no-startup-id "rofi -show drun -font \\"Hack 16\\" -show-icons"
+#exemplo...
+#rofi -combi-modi window,drun,ssh -theme solarized -font "hack 16" -show combi -icon-theme "Papirus" -show-icons
 
 
 #---------------#
