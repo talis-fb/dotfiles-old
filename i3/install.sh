@@ -8,7 +8,7 @@ echo 'PACOTES NECESSARIOS PARA RODAR ESSE SCRIPT:'
 echo -e '\t-base-devel'
 echo -e '\t-git'
 
-sudo pacman -S i3 dmenu rofi feh lxappearance
+sudo pacman -S i3 dmenu rofi feh lxappearance ttf-hack
 
 cd AURs/
 git clone https://aur.archlinux.org/polybar.git
