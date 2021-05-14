@@ -16,10 +16,10 @@ git clone https://aur.archlinux.org/polybar.git
 cd polybar/
 makepkg -si
 
-cd ../config-i3/
+cd ../../config-i3/
 cp * ~/.config/i3
 
-cd ../config-polybar/
+cd ../../config-polybar/
 cp * ~/.config/polybar
 
 echo ' # SELECIONAR TEMA DO ROFI'
