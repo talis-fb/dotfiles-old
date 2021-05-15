@@ -49,7 +49,7 @@ call plug#end()
 "bar
 set laststatus=2
 let g:lightline = {
-			\ 'colorscheme': 'jellybeans',
+			\ 'colorscheme': 'deus',
 			\ 'active': {
 			\   'right': [ [ 'lineinfo'  ],
 			\              [ 'percent'  ],
@@ -59,6 +59,8 @@ let g:lightline = {
 			\   'charvaluehex': '0x%B'
 			\ },
 			\ }
+
+
 
 
 " THEME 
