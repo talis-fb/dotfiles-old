@@ -96,7 +96,7 @@ set hlsearch
 set autoindent
 
 "Mouse
-"set mouse=a
+set mouse=a
 
 " -------------------------
 "          ATALHOS
