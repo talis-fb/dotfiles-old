@@ -38,6 +38,9 @@ Plug 'luochen1990/rainbow'
 "Plugins HTML
 Plug 'mattn/emmet-vim'
 
+" Para visualizar as cores no css
+Plug 'ap/vim-css-color'
+
 "CtrlP
 Plug 'kien/ctrlp.vim'
 
@@ -106,6 +109,9 @@ set mouse=a
 "Atalho para criar linhas sem ir para o modo de inserção
 nnoremap go o<Esc>
 nnoremap gO O<Esc>
+
+" Escrever texto (quebrar linhas)
+nnoremap <S-q> gq
 
 "Atalhos de save
 map <C-s> :w<CR> 

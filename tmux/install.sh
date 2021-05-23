@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo -e '\nMOVENDO .vimrc'
-cp .tmux.config ~/.tmux.config
-echo ' .vimrc --> ~/.vimrc'
+echo -e '\nMOVENDO .tmux.conf'
+cp .tmux.conf ~/.tmux.conf
+echo ' .tmux.conf --> ~/.tmux.conf'

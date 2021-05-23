@@ -8,13 +8,15 @@ echo '/t [x] nothing'
 echo -n '>'; read update;
 echo ''
 
+current_folder=$( pwd )
+
 function vimInstall(){
-	cd VIM/
+	cd $current_folder/VIM/
 	bash install.sh
 }
 
 function fishInstall(){
-	cd FISH/
+	cd $current_folder/FISH/
 	bash install.sh
 }
 

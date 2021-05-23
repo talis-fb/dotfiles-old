@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo 'Qual OS esta executando isso?'
-echo -e "[1] Arch Linux \t [2] Debian/Ubuntu\t[x] Não baixar nada"
+echo -e "[1] Arch Linux \t [2] Debian/Ubuntu\t [3] OpenSuse\t [x] Não baixar nada"
 echo -n '>'; read osRunning;
 
 function archInstall(){
@@ -13,6 +13,12 @@ function debianInstall(){
 	echo 'PROGRAMAS PARA INSTALAR'
 	echo -e '\t-Vim \n\t-Ranger \n\t-Tmux \n\t-Node \n\t-NPM \n'
 	sudo apt install vim vim-gtk tmux ranger git curl
+	echo -e 'NodeJs e NPM precisam de uma instalação por fora'
+}
+function suseInstall(){
+	echo 'PROGRAMAS PARA INSTALAR'
+	echo -e '\t-Vim \n\t-Ranger \n\t-Tmux \n\t-Node \n\t-NPM \n'
+	sudo zypper install vim tmux ranger git curl
 	echo -e 'NodeJs e NPM precisam de uma instalação por fora'
 }
 
@@ -31,6 +37,10 @@ if [ $osRunning = 1 ]; then
 elif [ $osRunning = 2 ]; then 
 	echo '1) Instalar programas'
 	debianInstall
+	pluginManager
+elif [ $osRunning = 3 ]; then 
+	echo '1) Instalar programas'
+	suseInstall
 	pluginManager
 fi
 
