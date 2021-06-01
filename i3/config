@@ -63,7 +63,7 @@ bindsym $mod+d exec --no-startup-id "rofi -show drun -font \\"Hack 16\\" -show-i
 #---------------#
 #   Wallpaper
 #---------------#
-exec --no-startup-id feh --bg-fill $HOME/Imagens/download.jpeg
+exec --no-startup-id feh --randomize --bg-fill $HOME/Imagens/download.jpeg
 
 
 
