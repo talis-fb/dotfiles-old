@@ -23,8 +23,12 @@ alias git-config-name="git config --global user.name"
 # firefox
 alias fire="firefox --private-window"
 
+# Node
 alias npmi-s="npm i --save"
 alias npmi-dv="npm i --save-dev"
+
+# Vim
+alias vimrc="vim ~/.vimrc"
 
 alias ll="ls -la"
 
