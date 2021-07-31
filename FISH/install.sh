@@ -24,3 +24,9 @@ if [ $res = "s" ]; then
 	echo ' config.fish --> ~/.config/fish/config.fish'
 fi
 	
+echo -n 'RECOMENDACÃO...';
+echo -n 'Caso esteja rodando isso em um WSL (Windows) rode o seguinte comando para o Git...';
+echo -n '';
+echo -n '>$ git config --global core.autocrlf true';
+echo -n '';
+echo -n 'Ele evita o conflito dos fim das linhas';
