@@ -5,6 +5,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Confs básicas
+Plug 'tpope/vim-sensible'
+
 "Themes
 Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
@@ -16,7 +19,6 @@ Plug 'tpope/vim-repeat'
 
 "NerdTree
 Plug 'preservim/nerdtree'
-Plug 'airblade/vim-gitgutter'
 
 "Syntax Highlight
 Plug 'sheerun/vim-polyglot'
@@ -24,9 +26,9 @@ Plug 'sheerun/vim-polyglot'
 "BottomBar
 Plug 'itchyny/lightline.vim'
 
-
 "Colorized pairs
 Plug 'luochen1990/rainbow'
+" Plug 'frazrepo/vim-rainbow'
 
 "Plugins HTML
 Plug 'mattn/emmet-vim'
@@ -34,15 +36,31 @@ Plug 'mattn/emmet-vim'
 "CtrlP
 Plug 'kien/ctrlp.vim'
 
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+" Comentarios
+Plug 'tpope/vim-commentary'
+
+" Linhas de indentação
+"Plug 'Yggdroot/indentLine'
+
 call plug#end()
 
 
 
 
 
+" ----- ABRIR O VIMRC PARA EDITAR --------------------------------
+map <F2> :tabnew $MYVIMRC<CR>
 " ----------------------------------------------------------------
-"      Configurações básicas 
-" ----------------------------------------------------------------
+
+
+
+
+
+" ----- Configurações básicas ------------------------------------
 set guifont=Ubuntu\ 12
 
 "bar
@@ -75,6 +93,8 @@ set hlsearch
 
 "AutoIndentacion
 set autoindent
+set smarttab
+set cindent
 
 "Mouse
 set mouse=a
@@ -84,9 +104,7 @@ set mouse=a
 
 
 
-" ----------------------------------------------------------------
-"      Theme 
-" ----------------------------------------------------------------
+" ------- Theme ---------------------------------------------------
 syntax on
 set termguicolors     " enable true colors support
 let ayucolor="mirage" " for mirage version of theme
@@ -97,9 +115,7 @@ colorscheme ayu
 
 
 
-" ----------------------------------------------------------------
-"      Light Line 
-" ----------------------------------------------------------------
+" ------ Light Line -----------------------------------------------
 let g:lightline = {
 			\ 'colorscheme': 'ayu_mirage',
 			\ 'active': {
@@ -148,9 +164,7 @@ endfunction
 
 
 
-" ----------------------------------------------------------------
-"      Coc EXTENSÕES 
-" ----------------------------------------------------------------
+" ------Coc EXTENSÕES --------------------------------------------
 " EXTENSÕES
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', 'coc-css', 'coc-vetur', 'coc-html', 'coc-explorer', 'coc-snippets' ]
 
@@ -214,11 +228,11 @@ let g:coc_explorer_global_presets = {
 \ }
 
 " Use preset argument to open it
+nnoremap <C-z> :CocCommand explorer --preset floating<CR>
 nnoremap <Leader>ed :CocCommand explorer --preset .vim<CR>
 nnoremap <Leader>ef :CocCommand explorer --preset floating<CR>
 nnoremap <Leader>ec :CocCommand explorer --preset cocConfig<CR>
 nnoremap <Leader>eb :CocCommand explorer --preset buffer<CR>
-nnoremap <Leader>x :CocCommand explorer --preset floating<CR>
 
 " List all presets
 nnoremap <Leader>el :CocList explPresets
@@ -228,9 +242,7 @@ nnoremap <Leader>el :CocList explPresets
 
 
 
-" ----------------------------------------------------------------
-"      ATALHOS
-" ----------------------------------------------------------------
+" ------ ATALHOS---------------------------------------------------
 "Atalhos de save
 map <C-s> :w<CR> 
 
@@ -308,9 +320,7 @@ map <silent> <C-TAB> :exe "tabn ".g:lasttab<cr>
 
 
 
-" ----------------------------------------------------------------
-"      Plugins
-" ----------------------------------------------------------------
+" ------ Plugins---------------------------------------------------
 
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
@@ -333,9 +343,7 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 
 
 
-" ----------------------------------------------------------------
-"      Uso do RANGER como FileExplorer
-" ----------------------------------------------------------------
+" ------ Uso do RANGER como FileExplorer---------------------------
 map <Leader>t :call RangerExplorer()<CR>
 
 function! RangerExplorer()
@@ -352,11 +360,7 @@ endfunction
 
 
 
-" ----------------------------------------------------------------
-" ---------------------------------------------------
-"      CONFIGURAÇÔES EXCLUSIVAS PARA CADA TIPO DE ARQUIVO
-" ---------------------------------------------------
-" ----------------------------------------------------------------
+" ------ CONFIGURAÇÔES EXCLUSIVAS PARA CADA TIPO DE ARQUIVO--------
 au FileType javascript call JavaScriptFile()
 au FileType css call CssFile()
 au FileType html call HtmlFile()
