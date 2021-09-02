@@ -25,6 +25,7 @@ Plug 'sheerun/vim-polyglot'
 
 "BottomBar
 Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline' 
 
 "Colorized pairs
 Plug 'luochen1990/rainbow'
@@ -43,8 +44,10 @@ Plug 'airblade/vim-gitgutter'
 " Comentarios
 Plug 'tpope/vim-commentary'
 
-" Linhas de indentação
-"Plug 'Yggdroot/indentLine'
+" Frescuras visuais
+Plug 'Yggdroot/indentLine'
+Plug 'itchyny/vim-cursorword' 
+
 
 call plug#end()
 
@@ -52,7 +55,7 @@ call plug#end()
 
 
 
-" ----- ABRIR O VIMRC PARA EDITAR --------------------------------
+" ----- EDITAR O VIMRC DIRETAMENTE -------------------------------
 map <F2> :tabnew $MYVIMRC<CR>
 " ----------------------------------------------------------------
 
@@ -96,10 +99,18 @@ set autoindent
 set smarttab
 set cindent
 
+" Sempre abre uma nova vsplit na direita da tela
+set splitright
+
 "Mouse
 set mouse=a
-" ----------------------------------------------------------------
+" -----------------------------------------------------------------
 
+
+" ------- Fugitive ------------------------------------------------
+nnoremap gs :Git<CR>
+nnoremap gsc :GCommit<CR>
+" -----------------------------------------------------------------
 
 
 
@@ -109,6 +120,9 @@ syntax on
 set termguicolors     " enable true colors support
 let ayucolor="mirage" " for mirage version of theme
 colorscheme ayu
+
+" Tempo para destacar a palavra em cima
+let g:cursorword_delay = 1000			
 " ----------------------------------------------------------------
 
 
@@ -117,35 +131,42 @@ colorscheme ayu
 
 " ------ Light Line -----------------------------------------------
 let g:lightline = {
-			\ 'colorscheme': 'ayu_mirage',
-			\ 'active': {
-			\   'right': [ [ 'lineinfo'  ],
-			\              [ 'percent'  ],
-			\              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex'  ] ]
-			\ },
-			\ 'component': {
-			\   'charvaluehex': '0x%B',
-			\   'opa': '%{ReturnIconFileType()}',
-			\ },
-			\ 'component_function': {
-			\   'filetype': 'MyFiletype',
-			\   'fileformat': 'MyFileformat',
-			\   'iconfiletype': 'ReturnIconFileType'
-			\ }
-			\ }
+            \ 'colorscheme': 'ayu_mirage',
+            \ 'active': {
+            \   'right': [ [ 'lineinfo'  ],
+            \              [ 'percent'  ],
+            \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex'  ] ]
+            \ },
+            \ 'component': {
+            \   'charvaluehex': '0x%B',
+            \ },
+            \ 'tab_component_function': {
+            \   'tabnum': 'LightlineWebDevIcons'
+            \ },
+            \ 'component_function': {
+            \   'gitbranch': 'GitBranch',
+            \   'filetype': 'MyFiletype',
+            \   'fileformat': 'MyFileformat',
+            \ }
+            \ }
+
+function! GitBranch()
+    return ' ' . FugitiveHead()
+endfunction
 
 let g:lightline.tabline = {
-		    \ 'left': [ [ 'tabs', 'iconfiletype']  ],
-		    \ 'right': [ [ 'close' ] ] }
-
-let g:lightline.tab_component_function = {
-		      \ 'filetype': 'WebDevIconsGetFileTypeSymbol'
-			  \ }
+    \ 'left': [ [ 'tabs' ]  ],
+    \ 'right': [ [ 'gitbranch', 'close' ] ] }
 
 let g:lightline.tab = {
 	\ 'active': [ 'tabnum', 'filename', 'modified' ],
 	\ 'inactive': [ 'tabnum', 'filename', 'modified' ],
 	\ }
+
+function! LightlineWebDevIcons(n)
+  let l:bufnr = tabpagebuflist(a:n)[tabpagewinnr(a:n) - 1]
+  return WebDevIconsGetFileTypeSymbol(bufname(l:bufnr))
+endfunction
 
 function!  ReturnIconFileType()
 	return WebDevIconsGetFileTypeSymbol()
@@ -158,6 +179,9 @@ endfunction
 function! MyFileformat()
 	return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
+
+" Sempre mostra as tabs
+set showtabline=2
 " ----------------------------------------------------------------
 
 
@@ -228,7 +252,7 @@ let g:coc_explorer_global_presets = {
 \ }
 
 " Use preset argument to open it
-nnoremap <C-z> :CocCommand explorer --preset floating<CR>
+nnoremap <silent><C-z> :CocCommand explorer --preset floating<CR>
 nnoremap <Leader>ed :CocCommand explorer --preset .vim<CR>
 nnoremap <Leader>ef :CocCommand explorer --preset floating<CR>
 nnoremap <Leader>ec :CocCommand explorer --preset cocConfig<CR>
@@ -267,7 +291,7 @@ nnoremap gO O<Esc>
 
 "Mover linhas
 " \+j  and   \+k
-nmap <Bslash>j ddjP<Esc>
+nmap <Bslash>j ddjP<Esc> 
 nmap <Bslash>k ddkP<Esc>
 
 "AutoPairs
@@ -282,16 +306,24 @@ inoremap \( \(\)<esc>hi
 inoremap \[ \[\]<esc>hi
 inoremap \{ \{\}<esc>hi
 
+" Separar todos os buffers em tabs
+nnoremap zat :tab ball<CR>
+
+" Lidar com splits views
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-h> <C-w>h
+map <C-l> <C-w>l
+
 " Buffers
-map <Leader>j <C-w>j
-map <Leader>k <C-w>k
-map <Leader>h <C-w>h
-map <Leader>l <C-w>l
-
 map <Leader>b :ls<CR>:b  
+map <Leader>h :bp<CR>
+map <Leader>l :bn<CR>
 
-map <C-h> :bp<CR>
-map <C-l> :bn<CR>
+map [b :bp<CR>
+map ]b :bn<CR>
+map [B :bfirst<CR>
+map ]B :blast<CR>
 
 " Windows
 map <C-o> :tabnew 
@@ -305,7 +337,7 @@ map <Leader>6 6gt<CR>
 map <Leader>7 7gt<CR>
 map <Leader>8 8gt<CR>
 map <Leader>9 9gt<CR>
-map <C-w>w :tabclose<CR>
+map <Leader>w :tabclose<CR>
 
 map <C-q> :tabprevious<CR>
 map <C-e> :tabnext<CR>
