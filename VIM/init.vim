@@ -1,5 +1,6 @@
 let mapleader=" "
 
+
 " O map MAIS IMPORTANTE de todos
 nnoremap <Right> <nop>
 vnoremap <Right> <nop>
@@ -258,9 +259,7 @@ nnoremap <C-p> :Files<CR>
 " Sair e fechar os buffers
 nnoremap <S-q> :bd<CR>
 
-"command! BufOnly execute '%bdelete|edit #|normal `"'
-"nnoremap caa :%bdelete|edit #|normal `"<CR>
-
+" Apagar hightlight na pesquisa com /
 nnoremap <silent><esc><esc> :noh<CR><esc>
 
 "Atalhos de save
@@ -273,12 +272,9 @@ inoremap <C-a> <Esc>^i
 vnoremap <C-a> <Esc>ggVG
 onoremap aa :<c-u>execute ":normal! ggVG"<CR>
 
-"Ctrl+V (conteudo no clipboard) no modo inserção
+"Ctrl+V Ctrl+C no registor "
 inoremap <C-v> <Esc>"+pi
-
-"Ctrl+C no modo VISUAL
 vnoremap <C-c> "+y
-
 nnoremap <Leader>y "+y
 nnoremap <Leader>p "+p
 
@@ -304,15 +300,6 @@ function Pair(char)
    execute "normal! a()"
 endfunction
 
-" inoremap ( <esc>:call Pair(v:key)<CR>
-
-"AutoPairs
-" inoremap ( ()<esc>i
-" inoremap [ []<esc>i
-" inoremap { {}<esc>i
-" inoremap ' ''<esc>i
-" inoremap " ""<esc>i
-
 " AutoPairs para LaTex
 inoremap \( \(\)<esc>hi
 inoremap \[ \[\]<esc>hi
@@ -331,11 +318,10 @@ map <C-l> <C-w>l
 map <Leader>b :ls<CR>:b  
 map <Leader>h :bp<CR>
 map <Leader>l :bn<CR>
-
-map [b :bp<CR>
-map ]b :bn<CR>
-map [B :bfirst<CR>
-map ]B :blast<CR>
+nnoremap [b :bp<CR>
+nnoremap ]b :bn<CR>
+nnoremap [B :bfirst<CR>
+nnoremap ]B :blast<CR>
 
 " Windows
 map <C-o> :tabnew 
@@ -357,7 +343,6 @@ map <C-e> :tabnext<CR>
 " Ctrl Tab
 au TabLeave * let g:lasttab = tabpagenr()
 map <silent> <C-TAB> :exe "tabn ".g:lasttab<cr>
-
 " ----------------------------------------------------------------
 
 
@@ -367,7 +352,6 @@ map <silent> <C-TAB> :exe "tabn ".g:lasttab<cr>
 " ------ SNIPPETS ---------------------------------------------------
 nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jS
 nnoremap ,main :-1read $HOME/.vim/.main.c<CR>3jS
-"nnoremap :emoji :tabnew $HOME/.vim/.emojis.txt<CR>
 
 function EmojisList()
    tabnew $HOME/.vim/.emojis.txt
@@ -417,43 +401,31 @@ endfunction
 
 
 " ------ CONFIGURAÇÔES EXCLUSIVAS PARA CADA TIPO DE ARQUIVO--------
-au FileType javascript call JavaScriptFile()
-au FileType css call CssFile()
-au FileType html call HtmlFile()
-au FileType python call PythonFile()
-au FileType markdown call MarkdownFile()
+autocmd FileType javascript call JavaScriptFile()
+autocmd FileType typescript call TypeScriptFile()
+autocmd FileType css,sass call CssFile()
+autocmd FileType python call PythonFile()
+autocmd FileType markdown call MarkdownFile()
 
 function! JavaScriptFile()
-	" OMNI => Ctrl+x + Ctrl+o
-	set omnifunc=javascriptcomplete#CompleteJS
-	nnoremap <C-c> I// <Esc>
-	vmap <C-c> :norm I//<CR>
-	imap <C-p> console.log(
 	nmap <Leader>r :!node %<CR>
 endfunction	
 
-function! CssFile()
-	set omnifunc=csscomplete#CompleteCSS
-
-	" Seta as chaves como sempre são usadas
-	inoremap { {<CR>}<esc>kA<CR>
-endfunction
-
-function! HtmlFile()
-	set omnifunc=htmlcomplete#CompleteTags
+function! TypeScriptFile()
+	nmap <Leader>r :!deno %<CR>
 endfunction	
 
+function! CssFile()
+    inoremap { {<CR>}<esc>O<esc>S
+endfunction
+
 function! PythonFile()
-	nnoremap <C-c> I# <Esc>
-	imap <C-p> print()<Esc>hi
 	nmap <Leader>r :!python3 %<CR>
 endfunction	
 
 function! MarkdownFile()
 	nnoremap j gj 
 	nnoremap k gk
-	"set tw=70
 	set wrap
-	autocmd VimEnter * Goyo
 	set relativenumber
 endfunction	
