@@ -1,58 +1,45 @@
 let mapleader=" "
 
+" O map MAIS IMPORTANTE de todos
+nnoremap <Right> <nop>
+vnoremap <Right> <nop>
+inoremap <Right> <nop>
+nnoremap <Left> <nop>
+vnoremap <Left> <nop>
+inoremap <Left> <nop>
+nnoremap <Up> <nop>
+vnoremap <Up> <nop>
+inoremap <Up> <nop>
+nnoremap <Down> <nop>
+vnoremap <Down> <nop>
+inoremap <Down> <nop>
+
+inoremap jj <Esc>
+
+
 "Plugins
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Confs básicas
 Plug 'tpope/vim-sensible'
-
-"Themes
 Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
 Plug 'ryanoasis/vim-devicons'
-
-"Surround
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-
-"NerdTree
-Plug 'preservim/nerdtree'
-
-"Syntax Highlight
-Plug 'sheerun/vim-polyglot'
-
-"BottomBar
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline' 
-
-"Colorized pairs
-Plug 'luochen1990/rainbow'
-" Plug 'frazrepo/vim-rainbow'
-
-"Plugins HTML
-Plug 'mattn/emmet-vim'
-
-"CtrlP
-Plug 'kien/ctrlp.vim'
-
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
-
-" Git
+Plug 'sheerun/vim-polyglot'
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline' 
+Plug 'luochen1990/rainbow'
+Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-
-" Comentarios
 Plug 'tpope/vim-commentary'
-
-" Frescuras visuais
 Plug 'Yggdroot/indentLine'
-Plug 'itchyny/vim-cursorword' 
-
+Plug 'itchyny/vim-cursorword'
+Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -61,7 +48,14 @@ call plug#end()
 
 
 " ----- EDITAR O VIMRC DIRETAMENTE -------------------------------
-map <F2> :tabnew $MYVIMRC<CR>
+map <F2> :call OpenVimrc()<CR>
+"nmap :vimrc :tabnew $MYVIMRC<CR>
+
+function OpenVimrc()
+   tabnew $MYVIMRC
+endfunction
+
+command -nargs=0 Vimrc call OpenVimrc()
 " ----------------------------------------------------------------
 
 
@@ -70,50 +64,33 @@ map <F2> :tabnew $MYVIMRC<CR>
 
 " ----- Configurações básicas ------------------------------------
 set guifont=Ubuntu\ 12
-
-"bar
 set laststatus=2
-
-" Show Keys Pressed
 set showcmd
-
-" Configurar linhas e numeros nela
+set list
 set encoding=UTF-8
 set hidden
 set number
 set relativenumber
 set nowrap
-
-"Destaque na linha onde está o cursor
 set cursorline
-
-"Indentização
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
-"Menu saida quando não salvar antes
 set confirm
-
-"Só para colorir quando você for procurar por uma palavar no comand-mode
 set incsearch
 set hlsearch
-
-"AutoIndentacion
 set autoindent
 set smarttab
 set cindent
-
-" Sempre abre uma nova vsplit na direita da tela
 set splitright
-
-"Mouse
+set undodir=~/.vim/undodir
+set undofile
 set mouse=a
 " -----------------------------------------------------------------
 
 
 " ------- Fugitive ------------------------------------------------
-nnoremap gss :Git 
+nnoremap gss :Git
 nnoremap gst :Git<CR>
 nnoremap gsc :Git commit<CR>
 " -----------------------------------------------------------------
@@ -128,7 +105,7 @@ let ayucolor="mirage" " for mirage version of theme
 colorscheme ayu
 
 " Tempo para destacar a palavra em cima
-let g:cursorword_delay = 1000			
+let g:cursorword_delay = 1000
 " ----------------------------------------------------------------
 
 
@@ -205,7 +182,6 @@ inoremap <silent><expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
     \ <SID>check_back_space() ? "\<TAB>" :
     \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -271,11 +247,21 @@ nnoremap <Leader>el :CocList explPresets
 
 
 
+" ------ fzf ---------------------------------------------------
+nnoremap <C-p> :Files<CR>
+" ----------------------------------------------------------------
+
+
 
 " ------ ATALHOS---------------------------------------------------
+
 " Sair e fechar os buffers
-nmap ZZ :w\|bd<CR>
-nmap ZQ :bd!<CR>
+nnoremap <S-q> :bd<CR>
+
+"command! BufOnly execute '%bdelete|edit #|normal `"'
+"nnoremap caa :%bdelete|edit #|normal `"<CR>
+
+nnoremap <silent><esc><esc> :noh<CR><esc>
 
 "Atalhos de save
 map <C-s> :w<CR> 
@@ -285,6 +271,7 @@ inoremap <C-a> <Esc>^i
 
 "Selecionar tudo modo seleção
 vnoremap <C-a> <Esc>ggVG
+onoremap aa :<c-u>execute ":normal! ggVG"<CR>
 
 "Ctrl+V (conteudo no clipboard) no modo inserção
 inoremap <C-v> <Esc>"+pi
@@ -292,8 +279,8 @@ inoremap <C-v> <Esc>"+pi
 "Ctrl+C no modo VISUAL
 vnoremap <C-c> "+y
 
-" Escrever texto (quebrar linhas)
-nnoremap <S-q> gq
+nnoremap <Leader>y "+y
+nnoremap <Leader>p "+p
 
 " Criar linhas sem ir para o modo inserção
 nnoremap go o<Esc>
@@ -304,12 +291,27 @@ nnoremap gO O<Esc>
 nmap <Bslash>j ddjP<Esc> 
 nmap <Bslash>k ddkP<Esc>
 
+" Apaga o hightlight apos uma pesquisa feita com o /
+nnoremap <C-L> :nohl<CR><C-L>
+
+
+   " if empty(a:char)
+function Pair(char)
+   if a:char == ""
+       execute "normal! a("
+       return
+   endif
+   execute "normal! a()"
+endfunction
+
+" inoremap ( <esc>:call Pair(v:key)<CR>
+
 "AutoPairs
-inoremap ( ()<esc>i
-inoremap [ []<esc>i
-inoremap { {}<esc>i
-inoremap ' ''<esc>i
-inoremap " ""<esc>i
+" inoremap ( ()<esc>i
+" inoremap [ []<esc>i
+" inoremap { {}<esc>i
+" inoremap ' ''<esc>i
+" inoremap " ""<esc>i
 
 " AutoPairs para LaTex
 inoremap \( \(\)<esc>hi
@@ -362,23 +364,35 @@ map <silent> <C-TAB> :exe "tabn ".g:lasttab<cr>
 
 
 
+" ------ SNIPPETS ---------------------------------------------------
+nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jS
+nnoremap ,main :-1read $HOME/.vim/.main.c<CR>3jS
+"nnoremap :emoji :tabnew $HOME/.vim/.emojis.txt<CR>
+
+function EmojisList()
+   tabnew $HOME/.vim/.emojis.txt
+endfunction
+
+command -nargs=0 Emoji call EmojisList()
+" -------------------------------------------------------------------
+
+
+
+
 " ------ Plugins---------------------------------------------------
 
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
 
-"Tecla para ocultar ou mostrar o NerdTree
-map <Leader>n :NERDTreeToggle<CR>
-
-" CtrlP
-let g:ctrlp_map = '<c-p>'
-
 " Emmet = digite `g,,` para aplicar o html inserido
 let g:user_emmet_leader_key='g,'
 
 " Rainbow Pairs
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
+"Undotree
+nnoremap <Leader>u :UndotreeToggle<CR>
 " ----------------------------------------------------------------
 
 
@@ -404,16 +418,10 @@ endfunction
 
 " ------ CONFIGURAÇÔES EXCLUSIVAS PARA CADA TIPO DE ARQUIVO--------
 au FileType javascript call JavaScriptFile()
-au BufRead,BufNewFile *.ts call TypescriptFile()
 au FileType css call CssFile()
 au FileType html call HtmlFile()
 au FileType python call PythonFile()
 au FileType markdown call MarkdownFile()
-
-function! TypescriptFile()
-    nnoremap <Leader>r :!deno run %<CR>
-endfunction
-
 
 function! JavaScriptFile()
 	" OMNI => Ctrl+x + Ctrl+o
