@@ -1,5 +1,10 @@
 let mapleader=" "
 
+" au VimEnter * silent! !setxkbmap -option caps:escape
+" au VimLeave * silent! !setxkbmap -option escape:caps
+
+" au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+" au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
 " O map MAIS IMPORTANTE de todos
 nnoremap <Right> <nop>
@@ -174,7 +179,7 @@ set showtabline=2
 
 " ------Coc EXTENSÕES --------------------------------------------
 " EXTENSÕES
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', 'coc-css', 'coc-vetur', 'coc-html', 'coc-explorer', 'coc-snippets' ]
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', 'coc-css', 'coc-vetur', 'coc-html', 'coc-explorer', 'coc-snippets', 'coc-clangd' ]
 
 " Atalhos
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -350,14 +355,28 @@ map <silent> <C-TAB> :exe "tabn ".g:lasttab<cr>
 
 
 " ------ SNIPPETS ---------------------------------------------------
-nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jS
-nnoremap ,main :-1read $HOME/.vim/.main.c<CR>3jS
+" nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>G3kS
+" nnoremap ,main :-1read $HOME/.vim/.main.c<CR>3jS
+nnoremap ,html :-1read $HOME/.config/nvim/custom/.skeleton.html<CR>G3kS
+nnoremap ,main :-1read $HOME/.config/nvim/custom/.main.c<CR>3jS
 
 function EmojisList()
-   tabnew $HOME/.vim/.emojis.txt
+   tabnew $HOME/.config/nvim/custom/.emojis.txt
 endfunction
 
 command -nargs=0 Emoji call EmojisList()
+
+
+function Text()
+    set wrap
+    set linebreak
+    nmap j gj
+    nmap k gk
+endfunction
+
+command -nargs=0 Txt call Text()
+nnoremap ,txt :call Text()<CR>
+
 " -------------------------------------------------------------------
 
 
@@ -421,11 +440,4 @@ endfunction
 
 function! PythonFile()
 	nmap <Leader>r :!python3 %<CR>
-endfunction	
-
-function! MarkdownFile()
-	nnoremap j gj 
-	nnoremap k gk
-	set wrap
-	set relativenumber
 endfunction	
