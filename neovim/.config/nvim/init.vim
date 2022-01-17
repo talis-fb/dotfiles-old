@@ -6,6 +6,9 @@ let mapleader=" "
 " au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 " au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
+" Para não dar erro no Neovide no Windows descomente essa linha
+" let g:python3_host_prog = 'C:\Users\Talison\AppData\Local\Programs\Python\Python39\python.exe'
+
 " O map MAIS IMPORTANTE de todos
 nnoremap <Right> <nop>
 vnoremap <Right> <nop>
@@ -26,26 +29,30 @@ inoremap jj <Esc>
 "Plugins
 call plug#begin('~/.vim/plugged')
 
+" Funcoes
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-sensible'
-Plug 'morhetz/gruvbox'
-Plug 'ayu-theme/ayu-vim'
-Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'mattn/emmet-vim'
+Plug 'mbbill/undotree'
+Plug 'jiangmiao/auto-pairs'
+
+" Visuais
+Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim'
+Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline' 
 Plug 'luochen1990/rainbow'
-Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/vim-cursorword'
-Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -255,7 +262,19 @@ nnoremap <Leader>el :CocList explPresets
 
 " ------ fzf ---------------------------------------------------
 nnoremap <C-p> :Files<CR>
+
+" Em um repositorio Git fazer uma pesquisa ignorando os arquivos no .gitignore
+autocmd User Fugitive call RepositorioGit()
+function RepositorioGit()
+    nnoremap <C-p> :GFiles<CR>
+endfunction
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
 " ----------------------------------------------------------------
+
 
 
 
@@ -375,6 +394,7 @@ function Text()
 endfunction
 
 command -nargs=0 Txt call Text()
+autocmd FileType text,markdown call Texto()
 nnoremap ,txt :call Text()<CR>
 
 " -------------------------------------------------------------------
@@ -424,7 +444,6 @@ autocmd FileType javascript call JavaScriptFile()
 autocmd FileType typescript call TypeScriptFile()
 autocmd FileType css,sass call CssFile()
 autocmd FileType python call PythonFile()
-autocmd FileType markdown call MarkdownFile()
 
 function! JavaScriptFile()
 	nmap <Leader>r :!node %<CR>
