@@ -7,7 +7,7 @@ let mapleader=" "
 " au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
 " Para não dar erro no Neovide no Windows descomente essa linha
-" let g:python3_host_prog = 'C:\Users\Talison\AppData\Local\Programs\Python\Python39\python.exe'
+let g:python3_host_prog = 'C:\Users\Talison\AppData\Local\Programs\Python\Python39\python.exe'
 
 " O map MAIS IMPORTANTE de todos
 nnoremap <Right> <nop>
@@ -137,13 +137,16 @@ let g:lightline = {
             \   'charvaluehex': '0x%B',
             \ },
             \ 'tab_component_function': {
-            \   'tabnum': 'LightlineWebDevIcons'
+            \   'tabnum': 'lightline#tab#tabnum',
+            \   'filetypeicon': 'LightlineWebDevIcons',
             \ },
             \ 'component_function': {
             \   'gitbranch': 'GitBranch',
             \   'filetype': 'MyFiletype',
             \   'fileformat': 'MyFileformat',
-            \ }
+            \ },
+            \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+            \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
             \ }
 
 function! GitBranch()
@@ -155,7 +158,7 @@ let g:lightline.tabline = {
     \ 'right': [ [ 'gitbranch', 'close' ] ] }
 
 let g:lightline.tab = {
-	\ 'active': [ 'tabnum', 'filename', 'modified' ],
+	\ 'active': [ 'filetypeicon', 'filename', 'modified' ],
 	\ 'inactive': [ 'tabnum', 'filename', 'modified' ],
 	\ }
 
@@ -177,7 +180,7 @@ function! MyFileformat()
 endfunction
 
 " Sempre mostra as tabs
-set showtabline=2
+set showtabline=1
 " ----------------------------------------------------------------
 
 
