@@ -186,7 +186,7 @@ set showtabline=2
 
 " ------Coc EXTENSÕES --------------------------------------------
 " EXTENSÕES
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', 'coc-css', 'coc-vetur', 'coc-html', 'coc-explorer', 'coc-snippets', 'coc-clangd' ]
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', 'coc-css', 'coc-vetur', 'coc-html', 'coc-explorer', 'coc-snippets', 'coc-prettier', 'coc-clangd' ]
 
 " Atalhos
 inoremap <silent><expr> <c-space> coc#refresh()
