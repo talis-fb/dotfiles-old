@@ -11,7 +11,7 @@ let mapleader=" "
 "   Ou ainda com o repositorio: https://github.com/susam/uncap
 
 " Para não dar erro no Neovide no Windows descomente essa linha
-" let g:python3_host_prog = 'C:\Users\Talison\AppData\Local\Programs\Python\Python39\python.exe'
+let g:python3_host_prog = 'C:\Users\Talison\AppData\Local\Programs\Python\Python39\python.exe'
 
 " O map MAIS IMPORTANTE de todos
 nnoremap <Right> <nop>
@@ -141,13 +141,16 @@ let g:lightline = {
             \   'charvaluehex': '0x%B',
             \ },
             \ 'tab_component_function': {
-            \   'tabnum': 'LightlineWebDevIcons'
+            \   'tabnum': 'lightline#tab#tabnum',
+            \   'filetypeicon': 'LightlineWebDevIcons',
             \ },
             \ 'component_function': {
             \   'gitbranch': 'GitBranch',
             \   'filetype': 'MyFiletype',
             \   'fileformat': 'MyFileformat',
-            \ }
+            \ },
+            \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+            \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
             \ }
 
 function! GitBranch()
@@ -159,7 +162,7 @@ let g:lightline.tabline = {
     \ 'right': [ [ 'gitbranch', 'close' ] ] }
 
 let g:lightline.tab = {
-	\ 'active': [ 'tabnum', 'filename', 'modified' ],
+	\ 'active': [ 'filetypeicon', 'filename', 'modified' ],
 	\ 'inactive': [ 'tabnum', 'filename', 'modified' ],
 	\ }
 
@@ -181,7 +184,7 @@ function! MyFileformat()
 endfunction
 
 " Sempre mostra as tabs
-set showtabline=2
+set showtabline=1
 " ----------------------------------------------------------------
 
 
@@ -190,7 +193,7 @@ set showtabline=2
 
 " ------Coc EXTENSÕES --------------------------------------------
 " EXTENSÕES
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', 'coc-css', 'coc-vetur', 'coc-html', 'coc-explorer', 'coc-snippets', 'coc-clangd' ]
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', 'coc-css', 'coc-vetur', 'coc-html', 'coc-explorer', 'coc-snippets', 'coc-prettier', 'coc-clangd' ]
 
 " Atalhos
 inoremap <silent><expr> <c-space> coc#refresh()
