@@ -11,7 +11,7 @@ let mapleader=" "
 "   Ou ainda com o repositorio: https://github.com/susam/uncap
 
 " Para não dar erro no Neovide no Windows descomente essa linha
-let g:python3_host_prog = 'C:\Users\Talison\AppData\Local\Programs\Python\Python39\python.exe'
+" let g:python3_host_prog = 'C:\Users\Talison\AppData\Local\Programs\Python\Python39\python.exe'
 
 " O map MAIS IMPORTANTE de todos
 nnoremap <Right> <nop>
@@ -290,6 +290,13 @@ omap <leader><tab> <plug>(fzf-maps-o)
 " Sair e fechar os buffers
 nnoremap <S-q> :bd<CR>
 
+nnoremap Y y$
+
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
 " Apagar hightlight na pesquisa com /
 nnoremap <silent><esc><esc> :noh<CR><esc>
 
@@ -318,6 +325,18 @@ nnoremap gO O<Esc>
 nmap <Bslash>j ddjP<Esc> 
 nmap <Bslash>k ddkP<Esc>
 
+" Lidar com splits views
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-h> <C-w>h
+map <C-l> <C-w>l
+
+
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+nnoremap <Leader>j :m .+1<CR>==
+nnoremap <Leader>k :m .-2<CR>==
+
 " Apaga o hightlight apos uma pesquisa feita com o /
 nnoremap <C-L> :nohl<CR><C-L>
 
@@ -338,12 +357,6 @@ inoremap \{ \{\}<esc>hi
 
 " Separar todos os buffers em tabs
 nnoremap zat :tab ball<CR>
-
-" Lidar com splits views
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-h> <C-w>h
-map <C-l> <C-w>l
 
 " Buffers
 map <Leader>b :ls<CR>:b  
