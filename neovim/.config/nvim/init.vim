@@ -6,6 +6,10 @@ let mapleader=" "
 " au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 " au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
+" Fazer o remap do Caps Lock é possivel com o PowerToy,
+"   em se pode instalar pela Microsoft Store
+"   Ou ainda com o repositorio: https://github.com/susam/uncap
+
 " Para não dar erro no Neovide no Windows descomente essa linha
 " let g:python3_host_prog = 'C:\Users\Talison\AppData\Local\Programs\Python\Python39\python.exe'
 
@@ -394,7 +398,7 @@ function Text()
 endfunction
 
 command -nargs=0 Txt call Text()
-autocmd FileType text,markdown call Texto()
+autocmd FileType text,markdown call Text()
 nnoremap ,txt :call Text()<CR>
 
 " -------------------------------------------------------------------
