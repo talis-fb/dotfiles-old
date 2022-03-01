@@ -1,42 +1,39 @@
-# directory 
+# desativa mensagem de boas-vindas
+set -U fish_greeting
+
+# director=y 
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-# ranger
-alias cdr="ranger"
+function dotfiles
+    cd ~/.dotfiles
+end
 
-# Neovim
-alias nv="nvim"
+function cd-fishrc
+    cd ~/.config/fish
+end
 
-# git
-alias gst="git status"
-alias gdff="git diff"
-alias gadd="git add"
-alias gcom="git commit"
-alias gcmm="git commit -m"
-alias gcl="git clone"
-alias gbr="git branch"
-alias gck="git checkout"
-alias gpush="git push"
-alias gpull="git pull"
-alias glog="git log"
-alias git-config-email="git config --global user.email"
-alias git-config-name="git config --global user.name"
+function cd-nvrc
+    cd ~/.config/nvim
+end
 
-# firefox
-alias fire="firefox --private-window"
+function fishrc
+    nvim ~/.config/fish/config.fish
+end
 
-# Node
-alias npmi-s="npm i --save"
-alias npmi-dv="npm i --save-dev"
+function ll
+    ls -la $argv
+end
 
-# Vim
-alias vimrc="vim ~/.vimrc"
-
-alias ll="ls -la"
 
 export VISUAL='nvim';
 export EDITOR='nvim';
 export TERM=xterm-256color
+
+# Node
+nvm use latest
+
+# Starhip
+starship init fish | source

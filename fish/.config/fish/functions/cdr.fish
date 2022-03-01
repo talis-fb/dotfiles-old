@@ -1,0 +1,3 @@
+function
+    ranger $argvs
+end
