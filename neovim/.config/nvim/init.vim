@@ -32,7 +32,7 @@ inoremap jj <Esc>
 
 
 "Plugins
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 " Funcoes
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -55,17 +55,21 @@ Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline' 
 Plug 'luochen1990/rainbow'
 Plug 'airblade/vim-gitgutter'
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/vim-cursorword'
 
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+
 call plug#end()
 
 
 
+" LUA MODULOS
+lua require('maps')
+lua require('statusline')
 
 
 " ----- EDITAR O VIMRC DIRETAMENTE -------------------------------
@@ -128,70 +132,6 @@ colorscheme onedark
 " Tempo para destacar a palavra em cima
 let g:cursorword_delay = 1000
 " ----------------------------------------------------------------
-
-
-
-
-
-" ------ Light Line -----------------------------------------------
-let g:lightline = {
-            \ 'colorscheme': 'onedark',
-            \ 'active': {
-            \   'right': [ [ 'lineinfo'  ],
-            \              [ 'percent'  ],
-            \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex'  ] ]
-            \ },
-            \ 'component': {
-            \   'charvaluehex': '0x%B',
-            \ },
-            \ 'tab_component_function': {
-            \   'tabnum': 'lightline#tab#tabnum',
-            \   'filetypeicon': 'LightlineWebDevIcons',
-            \ },
-            \ 'component_function': {
-            \   'gitbranch': 'GitBranch',
-            \   'filetype': 'MyFiletype',
-            \   'fileformat': 'MyFileformat',
-            \ },
-            \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-            \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
-            \ }
-
-function! GitBranch()
-    return ' ' . FugitiveHead()
-endfunction
-
-let g:lightline.tabline = {
-    \ 'left': [ [ 'tabs' ]  ],
-    \ 'right': [ [ 'gitbranch', 'close' ] ] }
-
-let g:lightline.tab = {
-	\ 'active': [ 'filetypeicon', 'filename', 'modified' ],
-	\ 'inactive': [ 'tabnum', 'filename', 'modified' ],
-	\ }
-
-function! LightlineWebDevIcons(n)
-  let l:bufnr = tabpagebuflist(a:n)[tabpagewinnr(a:n) - 1]
-  return WebDevIconsGetFileTypeSymbol(bufname(l:bufnr))
-endfunction
-
-function!  ReturnIconFileType()
-	return WebDevIconsGetFileTypeSymbol()
-endfunction
-
-function! MyFiletype()
-	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-
-function! MyFileformat()
-	return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
-
-" Sempre mostra as tabs
-set showtabline=1
-" ----------------------------------------------------------------
-
-
 
 
 
@@ -290,108 +230,7 @@ omap <leader><tab> <plug>(fzf-maps-o)
 
 
 " ------ ATALHOS---------------------------------------------------
-
-" Sair e fechar os buffers
-nnoremap <S-q> :bd<CR>
-
-nnoremap Y y$
-
-inoremap , ,<c-g>u
-inoremap . .<c-g>u
-inoremap ! !<c-g>u
-inoremap ? ?<c-g>u
-
 " Apagar hightlight na pesquisa com /
-nnoremap <silent><esc><esc> :noh<CR><esc>
-
-"Atalhos de save
-map <C-s> :w<CR> 
-
-"Atalho para voltar ao inicio da linha no modo de inserção
-inoremap <C-a> <Esc>^i
-
-"Selecionar tudo modo seleção
-vnoremap <C-a> <Esc>ggVG
-onoremap aa :<c-u>execute ":normal! ggVG"<CR>
-
-"Ctrl+V Ctrl+C no registor "
-inoremap <C-v> <Esc>"+pi
-vnoremap <C-c> "+y
-nnoremap <Leader>y "+y
-nnoremap <Leader>Y "+y$
-nnoremap <Leader>p "+p
-nnoremap <Leader>P "+P
-
-" Criar linhas sem ir para o modo inserção
-nnoremap go o<Esc>
-nnoremap gO O<Esc>
-
-"Mover linhas
-" \+j  and   \+k
-nmap <Bslash>j ddjP<Esc> 
-nmap <Bslash>k ddkP<Esc>
-
-" Lidar com splits views
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-h> <C-w>h
-map <C-l> <C-w>l
-
-map <Leader>/ <C-w>v
-
-
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
-nnoremap <Leader>j :m .+1<CR>==
-nnoremap <Leader>k :m .-2<CR>==
-
-" Apaga o hightlight apos uma pesquisa feita com o /
-nnoremap <C-L> :nohl<CR><C-L>
-
-
-   " if empty(a:char)
-function Pair(char)
-   if a:char == ""
-       execute "normal! a("
-       return
-   endif
-   execute "normal! a()"
-endfunction
-
-" AutoPairs para LaTex
-inoremap \( \(\)<esc>hi
-inoremap \[ \[\]<esc>hi
-inoremap \{ \{\}<esc>hi
-
-" Separar todos os buffers em tabs
-nnoremap zat :tab ball<CR>
-
-" Buffers
-map <Leader>b :ls<CR>:b  
-map <Leader>h :bp<CR>
-map <Leader>l :bn<CR>
-nnoremap [b :bp<CR>
-nnoremap ]b :bn<CR>
-nnoremap [B :bfirst<CR>
-nnoremap ]B :blast<CR>
-
-" Windows
-map <C-o> :tabnew 
-
-map <Leader>1 1gt<CR>
-map <Leader>2 2gt<CR>
-map <Leader>3 3gt<CR>
-map <Leader>4 4gt<CR>
-map <Leader>5 5gt<CR>
-map <Leader>6 6gt<CR>
-map <Leader>7 7gt<CR>
-map <Leader>8 8gt<CR>
-map <Leader>9 9gt<CR>
-map <Leader>w :tabclose<CR>
-
-map <C-q> :tabprevious<CR>
-map <C-e> :tabnext<CR>
-
 " Ctrl Tab
 au TabLeave * let g:lasttab = tabpagenr()
 map <silent> <C-TAB> :exe "tabn ".g:lasttab<cr>
@@ -402,8 +241,6 @@ map <silent> <C-TAB> :exe "tabn ".g:lasttab<cr>
 
 
 " ------ SNIPPETS ---------------------------------------------------
-" nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>G3kS
-" nnoremap ,main :-1read $HOME/.vim/.main.c<CR>3jS
 nnoremap ,html :-1read $HOME/.config/nvim/custom/.skeleton.html<CR>G3kS
 nnoremap ,main :-1read $HOME/.config/nvim/custom/.main.c<CR>3jS
 
