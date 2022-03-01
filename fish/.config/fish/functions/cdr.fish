@@ -1,3 +1,3 @@
-function
-    ranger $argvs
+function cdr
+    ranger $argv
 end

@@ -26,11 +26,11 @@ chsh -s $(which fish) || chsh -s /bin/fish
 echo ' ## Trocado o Shell pelo Fish'
 
 # instalar o prompt para o Fish
-# sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
 #Fisher
-# curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-# fisher install jorgebucaran/nvm.fish
+curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+fisher install jorgebucaran/nvm.fish
 
 echo ''
 echo '------------------------------------------------------------'

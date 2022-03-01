@@ -55,13 +55,20 @@ Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'luochen1990/rainbow'
-Plug 'airblade/vim-gitgutter'
+" Plug 'luochen1990/rainbow'
+" Plug 'airblade/vim-gitgutter'
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/vim-cursorword'
 
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+
+Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
+
+Plug 'startup-nvim/startup.nvim'
 
 call plug#end()
 
@@ -70,6 +77,8 @@ call plug#end()
 " LUA MODULOS
 lua require('maps')
 lua require('statusline')
+lua require('gitsigns').setup()
+lua require("startscreen")
 
 
 " ----- EDITAR O VIMRC DIRETAMENTE -------------------------------
@@ -137,7 +146,7 @@ let g:cursorword_delay = 1000
 
 " ------Coc EXTENSÕES --------------------------------------------
 " EXTENSÕES
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', 'coc-css', 'coc-vetur', 'coc-html', 'coc-explorer', 'coc-snippets', 'coc-prettier', 'coc-clangd' ]
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-css', 'coc-vetur', 'coc-html', 'coc-explorer', 'coc-snippets', 'coc-prettier', 'coc-clangd' ]
 
 " Atalhos
 inoremap <silent><expr> <c-space> coc#refresh()

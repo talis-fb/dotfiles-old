@@ -11,6 +11,13 @@ function dotfiles
     cd ~/.dotfiles
 end
 
+# Abrir arquivos de conf
+function fishrc
+    nvim ~/.config/fish/config.fish
+end
+
+
+# Ir para as pastas de configuracoes
 function cd-fishrc
     cd ~/.config/fish
 end
@@ -19,9 +26,6 @@ function cd-nvrc
     cd ~/.config/nvim
 end
 
-function fishrc
-    nvim ~/.config/fish/config.fish
-end
 
 function ll
     ls -la $argv
