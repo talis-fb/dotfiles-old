@@ -8,7 +8,7 @@ alias .....="cd ../../../.."
 alias cdr="ranger"
 
 # Neovim
-alias vi="nvim"
+alias nv="nvim"
 
 # git
 alias gst="git status"
@@ -20,6 +20,8 @@ alias gcl="git clone"
 alias gbr="git branch"
 alias gck="git checkout"
 alias gpush="git push"
+alias gpull="git pull"
+alias glog="git log"
 alias git-config-email="git config --global user.email"
 alias git-config-name="git config --global user.name"
 

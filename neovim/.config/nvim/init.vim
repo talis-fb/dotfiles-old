@@ -1,6 +1,7 @@
 let mapleader=" "
 
 " au VimEnter * silent! !setxkbmap -option caps:escape
+au VimEnter * silent! AsyncRun setxkbmap -option caps:escape
 " au VimLeave * silent! !setxkbmap -option escape:caps
 
 " au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
@@ -46,10 +47,13 @@ Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'jiangmiao/auto-pairs'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'editorconfig/editorconfig-vim'
 
 " Visuais
 Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
+Plug 'joshdick/onedark.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline' 
@@ -118,8 +122,8 @@ nnoremap gsc :Git commit<CR>
 " ------- Theme ---------------------------------------------------
 syntax on
 set termguicolors     " enable true colors support
-let ayucolor="mirage" " for mirage version of theme
-colorscheme ayu
+" let ayucolor="mirage" " for mirage version of theme
+colorscheme onedark
 
 " Tempo para destacar a palavra em cima
 let g:cursorword_delay = 1000
@@ -131,7 +135,7 @@ let g:cursorword_delay = 1000
 
 " ------ Light Line -----------------------------------------------
 let g:lightline = {
-            \ 'colorscheme': 'ayu_mirage',
+            \ 'colorscheme': 'onedark',
             \ 'active': {
             \   'right': [ [ 'lineinfo'  ],
             \              [ 'percent'  ],
@@ -314,7 +318,9 @@ onoremap aa :<c-u>execute ":normal! ggVG"<CR>
 inoremap <C-v> <Esc>"+pi
 vnoremap <C-c> "+y
 nnoremap <Leader>y "+y
+nnoremap <Leader>Y "+y$
 nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
 
 " Criar linhas sem ir para o modo inserção
 nnoremap go o<Esc>
@@ -330,6 +336,8 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-h> <C-w>h
 map <C-l> <C-w>l
+
+map <Leader>/ <C-w>v
 
 
 vnoremap <C-j> :m '>+1<CR>gv=gv
@@ -436,6 +444,10 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 
 "Undotree
 nnoremap <Leader>u :UndotreeToggle<CR>
+
+" Editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.', 'scp://.']
+au FileType gitcommit let b:EditorConfig_disable = 1
 " ----------------------------------------------------------------
 
 
