@@ -81,7 +81,7 @@ vnoremap(  "<C-k>", ":m '<-2<CR>gv=gv" )
 nnoremap(  "<Leader>j", ":m .+1<CR>==" )
 nnoremap(  "<Leader>k", ":m .-2<CR>==" )
 
-nnoremap(  "<C-L>",":nohl<CR><C-L>" )
+nnoremap(  "<esc><esc>",":nohl<CR><C-L>" )
 
 
 -- inoremap(  "\(","\(\)<esc>hi" )

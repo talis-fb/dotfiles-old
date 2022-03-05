@@ -92,11 +92,6 @@ lua require("which-key").setup()
 
 
 
-
-
-
-
-
 " ----- Configurações básicas ------------------------------------
 set guifont=Ubuntu\ 12
 set laststatus=2
@@ -124,11 +119,15 @@ set mouse=a
 " -----------------------------------------------------------------
 
 
+
+
+
 " ------- Fugitive ------------------------------------------------
 nnoremap gss :Git
 nnoremap gst :Git<CR>
 nnoremap gsc :Git commit<CR>
 " -----------------------------------------------------------------
+
 
 
 
@@ -143,27 +142,15 @@ colorscheme onedark
 
 
 
-" ------ fzf ---------------------------------------------------
-" nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
-" nnoremap <Leader>n :lua require('telescope.builtin').git_files()<CR>
-
-" " Em um repositorio Git fazer uma pesquisa ignorando os arquivos no .gitignore
-" autocmd User Fugitive call RepositorioGit()
-" function RepositorioGit()
-"     nnoremap <Leader>gh :echo "foii"<CR>
-" endfunction
-
-" nnoremap <C-z> :Telescope file_browser<CR><esc>
-" nnoremap  <Leader>ie :Telescope emoji<CR>
-" ----------------------------------------------------------------
-
-
-
-
 
 " ------ ATALHOS---------------------------------------------------
 " Ctrl Tab
-map <silent> <C-TAB> :exe "tabn ".g:lasttab<cr>
+if !exists('g:lasttab')
+  let g:lasttab = 1
+endif
+" nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+map <silent><C-TAB> :exe "tabn ".g:lasttab<cr>
 vmap n :norm
 " ----------------------------------------------------------------
 
@@ -192,8 +179,8 @@ endfunction
 command -nargs=0 Txt call Text()
 autocmd FileType text,markdown call Text()
 nnoremap ,txt :call Text()<CR>
-
 " -------------------------------------------------------------------
+
 
 
 

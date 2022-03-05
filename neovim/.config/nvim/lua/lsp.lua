@@ -8,7 +8,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Configuração dos LSP
 local lspconfig = require('lspconfig')
-local servers = { 'pyright', 'tsserver', 'vuels' }
+local servers = { 'pyright', 'tsserver', 'vuels', 'html', 'jsonls', 'eslint', 'cssls' }
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')

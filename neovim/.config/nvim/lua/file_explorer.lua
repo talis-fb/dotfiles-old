@@ -7,8 +7,14 @@ require("telescope").setup({
         i = {
           -- ["<esc>"] = actions.close,
           ["<C-j>"] = actions.move_selection_next,
-          ["<C-k>"] = actions.move_selection_previous
+          ["<C-k>"] = actions.move_selection_previous,
+          ["<cr>"] = actions.select_tab,
         },
+        n = {
+          ["<cr>"] = actions.select_tab,
+          ["-"] = actions.select_horizontal,
+          ["/"] = actions.select_vertical,
+        }
       },
     },
     extensions = {
@@ -41,7 +47,7 @@ require("telescope").load_extension("file_browser")
 
 -- MAPS
 function api_map(mode, shortcut, command, noremap)
-  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap=noremap, silent = true })
+  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap=noremap, silent = false })
 end
 
 
