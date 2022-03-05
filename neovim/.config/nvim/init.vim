@@ -34,8 +34,15 @@ inoremap jj <Esc>
 "Plugins
 call plug#begin()
 
+" LSP
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'onsails/lspkind-nvim'
+
 " Funcoes
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
@@ -49,29 +56,23 @@ Plug 'mbbill/undotree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Visuais
 Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
 Plug 'joshdick/onedark.vim'
-Plug 'ryanoasis/vim-devicons'
-" Plug 'luochen1990/rainbow'
-" Plug 'airblade/vim-gitgutter'
-Plug 'Yggdroot/indentLine'
-Plug 'itchyny/vim-cursorword'
-
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-
-Plug 'nvim-telescope/telescope.nvim'
-
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-
 Plug 'startup-nvim/startup.nvim'
+Plug 'p00f/nvim-ts-rainbow'
+
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'xiyaowong/telescope-emoji.nvim'
 
 call plug#end()
-
 
 
 " LUA MODULOS
@@ -79,6 +80,10 @@ lua require('maps')
 lua require('statusline')
 lua require('gitsigns').setup()
 lua require("startscreen")
+lua require('pairs')
+
+lua require('lsp')
+lua require('file_explorer')
 
 
 " ----- EDITAR O VIMRC DIRETAMENTE -------------------------------
@@ -137,84 +142,6 @@ syntax on
 set termguicolors     " enable true colors support
 " let ayucolor="mirage" " for mirage version of theme
 colorscheme onedark
-
-" Tempo para destacar a palavra em cima
-let g:cursorword_delay = 1000
-" ----------------------------------------------------------------
-
-
-
-" ------Coc EXTENSÕES --------------------------------------------
-" EXTENSÕES
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-css', 'coc-vetur', 'coc-html', 'coc-explorer', 'coc-snippets', 'coc-prettier', 'coc-clangd' ]
-
-" Atalhos
-inoremap <silent><expr> <c-space> coc#refresh()
-" Seta TAB para escolher as sugestões que aparecerem
-inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-"Explorer
-let g:coc_explorer_global_presets = {
-\   '.vim': {
-\     'root-uri': '~/.vim',
-\   },
-\   'cocConfig': {
-\      'root-uri': '~/.config/coc',
-\   },
-\   'tab': {
-\     'position': 'tab',
-\     'quit-on-open': v:true,
-\   },
-\   'tab:$': {
-\     'position': 'tab:$',
-\     'quit-on-open': v:true,
-\   },
-\   'floating': {
-\     'position': 'floating',
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingTop': {
-\     'position': 'floating',
-\     'floating-position': 'center-top',
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingLeftside': {
-\     'position': 'floating',
-\     'floating-position': 'left-center',
-\     'floating-width': 50,
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingRightside': {
-\     'position': 'floating',
-\     'floating-position': 'right-center',
-\     'floating-width': 50,
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'simplify': {
-\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-\   },
-\   'buffer': {
-\     'sources': [{'name': 'buffer', 'expand': v:true}]
-\   },
-\ }
-
-" Use preset argument to open it
-nnoremap <silent><C-z> :CocCommand explorer --preset floating<CR>
-nnoremap <Leader>ed :CocCommand explorer --preset .vim<CR>
-nnoremap <Leader>ef :CocCommand explorer --preset floating<CR>
-nnoremap <Leader>ec :CocCommand explorer --preset cocConfig<CR>
-nnoremap <Leader>eb :CocCommand explorer --preset buffer<CR>
-
-" List all presets
-nnoremap <Leader>el :CocList explPresets
 " ----------------------------------------------------------------
 
 
@@ -239,10 +166,9 @@ omap <leader><tab> <plug>(fzf-maps-o)
 
 
 " ------ ATALHOS---------------------------------------------------
-" Apagar hightlight na pesquisa com /
 " Ctrl Tab
-au TabLeave * let g:lasttab = tabpagenr()
 map <silent> <C-TAB> :exe "tabn ".g:lasttab<cr>
+vmap n :norm
 " ----------------------------------------------------------------
 
 
@@ -278,15 +204,8 @@ nnoremap ,txt :call Text()<CR>
 
 " ------ Plugins---------------------------------------------------
 
-" Exit Vim if NERDTree is the only window left.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    \ quit | endif
-
 " Emmet = digite `g,,` para aplicar o html inserido
 let g:user_emmet_leader_key='g,'
-
-" Rainbow Pairs
-let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
 "Undotree
 nnoremap <Leader>u :UndotreeToggle<CR>
@@ -296,45 +215,3 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.', 'scp://.']
 au FileType gitcommit let b:EditorConfig_disable = 1
 " ----------------------------------------------------------------
 
-
-
-
-
-" ------ Uso do RANGER como FileExplorer---------------------------
-map <Leader>t :call RangerExplorer()<CR>
-
-function! RangerExplorer()
-	exec 'silent !ranger --choosefile=/tmp/vim_ranger_current_file ' . expand('%:p:h')
-	if filereadable('/tmp/vim_ranger_current_file')
-		exec 'tabnew ' . system('cat /tmp/vim_ranger_current_file')
-		exec 'silent !rm /tmp/vim_ranger_current_file'
-	endif
-	redraw!
-endfunction
-" ----------------------------------------------------------------
-
-
-
-
-
-" ------ CONFIGURAÇÔES EXCLUSIVAS PARA CADA TIPO DE ARQUIVO--------
-autocmd FileType javascript call JavaScriptFile()
-autocmd FileType typescript call TypeScriptFile()
-autocmd FileType css,sass call CssFile()
-autocmd FileType python call PythonFile()
-
-function! JavaScriptFile()
-	nmap <Leader>r :!node %<CR>
-endfunction	
-
-function! TypeScriptFile()
-	nmap <Leader>r :!deno %<CR>
-endfunction	
-
-function! CssFile()
-    inoremap { {<CR>}<esc>O<esc>S
-endfunction
-
-function! PythonFile()
-	nmap <Leader>r :!python3 %<CR>
-endfunction	

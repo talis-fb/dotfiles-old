@@ -114,3 +114,6 @@ map(  "<Leader>w",":tabclose<CR>" )
 map(  "<C-q>",":tabprevious<CR>" )
 map(  "<C-e>",":tabnext<CR>" )
 
+-- Telescope
+map(  "<C-z>",":Telescope find_files<CR>" )
+map(  "<Leader>ie",":Telescope emoji<CR>" )

@@ -1,3 +1,3 @@
 function glog
-    git log $argv
+    git log --all --graph --decorate $argv
 end

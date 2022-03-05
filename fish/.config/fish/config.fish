@@ -1,7 +1,7 @@
 # desativa mensagem de boas-vindas
 set -U fish_greeting
 
-# director=y 
+# director=y
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -37,7 +37,7 @@ export EDITOR='nvim';
 export TERM=xterm-256color
 
 # Node
-nvm use latest
+nvm use latest &
 
 # Starhip
 starship init fish | source
