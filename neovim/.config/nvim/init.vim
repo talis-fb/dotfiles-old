@@ -27,11 +27,10 @@ inoremap <Up> <nop>
 nnoremap <Down> <nop>
 vnoremap <Down> <nop>
 inoremap <Down> <nop>
-
 inoremap jj <Esc>
 
 
-"Plugins
+" -- Plugins -----------------------------------------------------
 call plug#begin()
 
 " LSP
@@ -43,59 +42,56 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'onsails/lspkind-nvim'
 
 " Funcoes
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'xiyaowong/telescope-emoji.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'folke/which-key.nvim'
 
 " Visuais
 Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
 Plug 'joshdick/onedark.vim'
+Plug 'startup-nvim/startup.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'startup-nvim/startup.nvim'
 Plug 'p00f/nvim-ts-rainbow'
 
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'xiyaowong/telescope-emoji.nvim'
-
 call plug#end()
+" ----------------------------------------------------------------
 
 
-" LUA MODULOS
+
+
+
+" --- LUA MODULOS ------------------------------------------------
 lua require('maps')
 lua require('statusline')
 lua require('gitsigns').setup()
 lua require("startscreen")
 lua require('pairs')
-
 lua require('lsp')
 lua require('file_explorer')
-
-
-" ----- EDITAR O VIMRC DIRETAMENTE -------------------------------
-map <F2> :call OpenVimrc()<CR>
-"nmap :vimrc :tabnew $MYVIMRC<CR>
-
-function OpenVimrc()
-   tabnew $MYVIMRC
-endfunction
-
-command -nargs=0 Vimrc call OpenVimrc()
+lua require("which-key").setup()
 " ----------------------------------------------------------------
+
+
+
+
+
 
 
 
@@ -148,19 +144,19 @@ colorscheme onedark
 
 
 " ------ fzf ---------------------------------------------------
-nnoremap <C-p> :Files<CR>
+" nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
+" nnoremap <Leader>n :lua require('telescope.builtin').git_files()<CR>
 
-" Em um repositorio Git fazer uma pesquisa ignorando os arquivos no .gitignore
-autocmd User Fugitive call RepositorioGit()
-function RepositorioGit()
-    nnoremap <C-p> :GFiles<CR>
-endfunction
+" " Em um repositorio Git fazer uma pesquisa ignorando os arquivos no .gitignore
+" autocmd User Fugitive call RepositorioGit()
+" function RepositorioGit()
+"     nnoremap <Leader>gh :echo "foii"<CR>
+" endfunction
 
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
+" nnoremap <C-z> :Telescope file_browser<CR><esc>
+" nnoremap  <Leader>ie :Telescope emoji<CR>
 " ----------------------------------------------------------------
+
 
 
 
@@ -175,7 +171,7 @@ vmap n :norm
 
 
 
-" ------ SNIPPETS ---------------------------------------------------
+" ------ SNIPPETS PRÓPRIOS -------------------------------------------
 nnoremap ,html :-1read $HOME/.config/nvim/custom/.skeleton.html<CR>G3kS
 nnoremap ,main :-1read $HOME/.config/nvim/custom/.main.c<CR>3jS
 
@@ -203,7 +199,6 @@ nnoremap ,txt :call Text()<CR>
 
 
 " ------ Plugins---------------------------------------------------
-
 " Emmet = digite `g,,` para aplicar o html inserido
 let g:user_emmet_leader_key='g,'
 
@@ -215,3 +210,17 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.', 'scp://.']
 au FileType gitcommit let b:EditorConfig_disable = 1
 " ----------------------------------------------------------------
 
+
+
+
+
+" ----- EDITAR O VIMRC DIRETAMENTE -------------------------------
+map <F2> :call OpenVimrc()<CR>
+"nmap :vimrc :tabnew $MYVIMRC<CR>
+
+function OpenVimrc()
+   tabnew $MYVIMRC
+endfunction
+
+command -nargs=0 Vimrc call OpenVimrc()
+" ----------------------------------------------------------------
