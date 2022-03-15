@@ -59,13 +59,16 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'xiyaowong/telescope-emoji.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'folke/which-key.nvim'
+Plug 'neoclide/vim-jsx-improve'
 
 " Visuais
 Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
 Plug 'joshdick/onedark.vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'startup-nvim/startup.nvim'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'akinsho/bufferline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'p00f/nvim-ts-rainbow'
@@ -116,6 +119,7 @@ set splitright
 set undodir=~/.vim/undodir
 set undofile
 set mouse=a
+set nocompatible
 " -----------------------------------------------------------------
 
 
@@ -137,6 +141,7 @@ syntax on
 set termguicolors     " enable true colors support
 " let ayucolor="mirage" " for mirage version of theme
 colorscheme onedark
+colorscheme tokyonight
 " ----------------------------------------------------------------
 
 

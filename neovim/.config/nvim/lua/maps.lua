@@ -44,6 +44,8 @@ imap(  ",", ",<c-g>u" )
 imap(  ".", ".<c-g>u" )
 imap(  "!", "!<c-g>u" )
 imap(  "?", "?<c-g>u" )
+imap(  ";", ";<c-g>u" )
+imap(  ":", ":<c-g>u" )
 
 
 nnoremap(  "<silent><esc><esc>", ":noh<CR><esc>" )
@@ -91,10 +93,11 @@ nnoremap(  "<esc><esc>",":nohl<CR><C-L>" )
 nnoremap( "zat", ":tab ball<CR>" )
 
 map(  "<Leader>b",":ls<CR>:b" )
-map(  "<Leader>h",":bp<CR>" )
-map(  "<Leader>l",":bn<CR>" )
 nnoremap(  "[b",":bp<CR>" )
 nnoremap(  "]b",":bn<CR>" )
+nnoremap(  "[[",":bp<CR>" )
+nnoremap(  "]]",":bn<CR>" )
+
 nnoremap(  "[B",":bfirst<CR>" )
 nnoremap(  "]B",":blast<CR>" )
 
@@ -113,3 +116,7 @@ map(  "<Leader>w",":tabclose<CR>" )
 
 map(  "<C-q>",":tabprevious<CR>" )
 map(  "<C-e>",":tabnext<CR>" )
+
+-- Plugins
+nnoremap(  "[g",":Gitsigns prev_hunk<CR>" )
+nnoremap(  "]g",":Gitsigns next_hunk<CR>" )

@@ -5,12 +5,13 @@ require("telescope").setup({
     defaults = {
       mappings = {
         i = {
-          -- ["<esc>"] = actions.close,
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
-          ["<cr>"] = actions.select_tab,
+          -- ["<cr>"] = actions.select_tab,
+          ["<C-Enter>"] = actions.select_tab,
         },
         n = {
+          ["q"] = actions.close,
           ["<cr>"] = actions.select_tab,
           ["-"] = actions.select_horizontal,
           ["/"] = actions.select_vertical,
@@ -20,6 +21,8 @@ require("telescope").setup({
     extensions = {
       file_browser = {
         theme = "ivy",
+        -- cwd_to_path = true,
+        path = "%:p:h",
         mappings = {
           ["i"] = {
             -- your custom insert mode mappings
@@ -28,16 +31,27 @@ require("telescope").setup({
           ["n"] = {
             --your custom normal mode mappings
             ["h"] = fb_actions.goto_parent_dir,
-            ["l"] = fb_actions.change_cwd,
+            ["l"] = actions.select_tab,
             ["a"] = fb_actions.create,
             ["m"] = fb_actions.move,
             ["y"] = fb_actions.copy,
             ["x"] = fb_actions.remove,
             ["r"] = fb_actions.rename,
             ["<backspace>"] = fb_actions.toggle_hidden,
+            ["."] = fb_actions.goto_cwd,
           },
         },
       },
+      emoji = {
+        mappings = {
+          ["i"] = {
+            -- ["<cr>"] = actions.select_default,
+          },
+          ["n"] = {
+            -- ["<cr>"] = actions.select_default,
+          }
+        }
+      }
     },
   })
 

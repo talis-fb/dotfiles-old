@@ -31,6 +31,8 @@ function ll
     ls -la $argv
 end
 
+alias t="tmux"
+
 
 export VISUAL='nvim';
 export EDITOR='nvim';
