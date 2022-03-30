@@ -31,8 +31,12 @@ require('lualine').setup {
 require("bufferline").setup({
   options = {
     mode = "tabs",
-    numbers = "ordinal"
+    numbers = "ordinal",
+    -- sort_by = "tabs",
+    -- persist_buffer_sort = true,
   }
 })
+
+require'bufferline'.sort_buffers_by('tabs')
 
 

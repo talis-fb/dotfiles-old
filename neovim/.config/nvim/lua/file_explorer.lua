@@ -68,9 +68,8 @@ end
 -- nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
 -- nnoremap <Leader>n :lua require('telescope.builtin').git_files()<CR>
 api_map('n', "<C-p>", ":lua require('telescope.builtin').git_files()<CR>", false)
-api_map('n',  "<Leader>n", ":Telescope find_files<CR>", false)
+api_map('n',  "<Leader>.", ":Telescope find_files<CR>", false)
 
-api_map('n',     "<Leader>n", ":Telescope find_files<CR>", false)
 api_map('',     "<C-z>", ":Telescope file_browser<CR><esc>" , false)
 api_map('n',     "<Leader>ie", ":Telescope emoji<CR>" , false)
 

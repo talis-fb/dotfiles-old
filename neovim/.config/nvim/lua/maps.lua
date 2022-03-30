@@ -1,5 +1,5 @@
 function api_map(mode, shortcut, command, noremap)
-  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap=noremap, silent = true })
+  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap=noremap, silent = false })
 end
 
 function map(shortcut, command)
@@ -120,3 +120,5 @@ map(  "<C-e>",":tabnext<CR>" )
 -- Plugins
 nnoremap(  "[g",":Gitsigns prev_hunk<CR>" )
 nnoremap(  "]g",":Gitsigns next_hunk<CR>" )
+
+nnoremap( ",term", ":terminal<CR>" )

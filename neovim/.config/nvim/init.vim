@@ -52,7 +52,6 @@ Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-telescope/telescope.nvim'
@@ -60,17 +59,16 @@ Plug 'xiyaowong/telescope-emoji.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'neoclide/vim-jsx-improve'
+" Plug 'editorconfig/editorconfig-vim'
+Plug 'sbdchd/neoformat' "Prettier
 
 " Visuais
-Plug 'morhetz/gruvbox'
-Plug 'ayu-theme/ayu-vim'
-Plug 'joshdick/onedark.vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'startup-nvim/startup.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lewis6991/gitsigns.nvim'
+" Plug 'startup-nvim/startup.nvim'
 Plug 'p00f/nvim-ts-rainbow'
 
 call plug#end()
@@ -84,7 +82,7 @@ call plug#end()
 lua require('maps')
 lua require('statusline')
 lua require('gitsigns').setup()
-lua require("startscreen")
+" lua require("startscreen")
 lua require('pairs')
 lua require('lsp')
 lua require('file_explorer')
@@ -93,6 +91,8 @@ lua require("which-key").setup()
 
 
 
+let g:neoformat_try_node_exe = 1
+autocmd BufWritePre *.js,*.ts,*jsx,*tsx Neoformat
 
 
 " ----- Configurações básicas ------------------------------------
@@ -139,8 +139,6 @@ nnoremap gsc :Git commit<CR>
 " ------- Theme ---------------------------------------------------
 syntax on
 set termguicolors     " enable true colors support
-" let ayucolor="mirage" " for mirage version of theme
-colorscheme onedark
 colorscheme tokyonight
 " ----------------------------------------------------------------
 

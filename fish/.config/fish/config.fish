@@ -39,7 +39,7 @@ export EDITOR='nvim';
 export TERM=xterm-256color
 
 # Node
-nvm use latest &
+# nvm use latest &
 
 # Starhip
 starship init fish | source
