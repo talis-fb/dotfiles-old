@@ -32,11 +32,7 @@ require("bufferline").setup({
   options = {
     mode = "tabs",
     numbers = "ordinal",
-    -- sort_by = "tabs",
-    -- persist_buffer_sort = true,
+    sort_by = "insert_after_current",
   }
 })
-
-require'bufferline'.sort_buffers_by('tabs')
-
 

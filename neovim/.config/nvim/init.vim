@@ -59,7 +59,7 @@ Plug 'xiyaowong/telescope-emoji.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'neoclide/vim-jsx-improve'
-" Plug 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat' "Prettier
 
 " Visuais
@@ -68,7 +68,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-" Plug 'startup-nvim/startup.nvim'
+Plug 'mhinz/vim-startify'
 Plug 'p00f/nvim-ts-rainbow'
 
 call plug#end()
