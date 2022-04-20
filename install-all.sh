@@ -6,7 +6,7 @@
 #	- Fish Shell
 #	- stow
 #	- Tmux
-#	- Ranger 
+#	- Ranger
 #	- nvm (NodeJs) https://github.com/nvm-sh/nvm
 #	- Curl
 #	- Which
@@ -15,7 +15,7 @@
 # VIM / NEOVIM - Plugin Manager
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    
+
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
@@ -31,6 +31,9 @@ sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 #Fisher
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 fisher install jorgebucaran/nvm.fish
+
+# Tmux plugin Manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || (echo ' ## ERRO ao instalar o Tmux Plug Manager' && exit)
 
 echo ''
 echo '------------------------------------------------------------'
