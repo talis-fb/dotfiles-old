@@ -21,8 +21,8 @@ require("telescope").setup({
     extensions = {
       file_browser = {
         theme = "ivy",
-        -- cwd_to_path = true,
         path = "%:p:h",
+        hide_parent_dir = true,
         mappings = {
           ["i"] = {
             -- your custom insert mode mappings
