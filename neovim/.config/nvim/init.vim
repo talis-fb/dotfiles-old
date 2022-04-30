@@ -130,6 +130,8 @@ set nocompatible
 nnoremap gss :Git
 nnoremap gst :Git<CR>
 nnoremap gsc :Git commit<CR>
+nnoremap gsp :Git push<CR>
+nnoremap gsl :Git log --all --graph --decorate --oneline<CR>
 " -----------------------------------------------------------------
 
 
