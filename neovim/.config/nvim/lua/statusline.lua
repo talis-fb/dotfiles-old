@@ -35,4 +35,6 @@ require("bufferline").setup({
     sort_by = "insert_after_current",
   }
 })
+vim.api.nvim_set_keymap('n', '[cw', ':-tabmove<CR>', { noremap=noremap, silent = true })
+vim.api.nvim_set_keymap('n', ']cw', ':+tabmove<CR>', { noremap=noremap, silent = true })
 
