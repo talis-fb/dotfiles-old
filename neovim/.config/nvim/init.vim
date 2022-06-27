@@ -34,6 +34,7 @@ inoremap jj <Esc>
 call plug#begin()
 
 " LSP
+Plug 'nvim-lua/plenary.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -52,7 +53,6 @@ Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'xiyaowong/telescope-emoji.nvim'
@@ -92,7 +92,7 @@ lua require("which-key").setup()
 
 
 let g:neoformat_try_node_exe = 1
-autocmd BufWritePre *.js,*.ts,*jsx,*tsx Neoformat
+autocmd BufWritePre *.js,*.ts,*jsx,*tsx,*vue Neoformat
 
 
 " ----- Configurações básicas ------------------------------------
