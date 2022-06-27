@@ -70,6 +70,6 @@ end
 api_map('n', "<C-p>", ":lua require('telescope.builtin').git_files()<CR>", false)
 api_map('n',  "<Leader>.", ":Telescope find_files<CR>", false)
 
-api_map('',     "<C-z>", ":Telescope file_browser<CR><esc>" , false)
+api_map('n',     "<C-z>", ":Telescope file_browser<CR> <ESC>" , false)
 api_map('n',     "<Leader>ie", ":Telescope emoji<CR>" , false)
 
