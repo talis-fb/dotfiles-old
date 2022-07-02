@@ -95,11 +95,10 @@ nnoremap( "zat", ":tab ball<CR>" )
 map(  "<Leader>b",":ls<CR>:b" )
 nnoremap(  "[b",":bp<CR>" )
 nnoremap(  "]b",":bn<CR>" )
-nnoremap(  "[[",":bp<CR>" )
-nnoremap(  "]]",":bn<CR>" )
-
 nnoremap(  "[B",":bfirst<CR>" )
 nnoremap(  "]B",":blast<CR>" )
+map(  "<C-q>",":bp<CR>" )
+map(  "<C-e>",":bn<CR>" )
 
 map(  "<C-o>",":tabnew" )
 
@@ -113,9 +112,6 @@ map(  "<Leader>7","7gt<CR>" )
 map(  "<Leader>8","8gt<CR>" )
 map(  "<Leader>9","9gt<CR>" )
 map(  "<Leader>w",":tabclose<CR>" )
-
-map(  "<C-q>",":tabprevious<CR>" )
-map(  "<C-e>",":tabnext<CR>" )
 
 -- Plugins
 nnoremap(  "[g",":Gitsigns prev_hunk<CR>" )

@@ -7,12 +7,12 @@ require("telescope").setup({
         i = {
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
-          -- ["<cr>"] = actions.select_tab,
+         -- ["<cr>"] = actions.select,
           ["<C-Enter>"] = actions.select_tab,
         },
         n = {
           ["q"] = actions.close,
-          ["<cr>"] = actions.select_tab,
+          -- ["<cr>"] = actions.select,
           ["-"] = actions.select_horizontal,
           ["/"] = actions.select_vertical,
         }
@@ -31,7 +31,7 @@ require("telescope").setup({
           ["n"] = {
             --your custom normal mode mappings
             ["h"] = fb_actions.goto_parent_dir,
-            ["l"] = actions.select_tab,
+            ["l"] = actions.select_default,
             ["a"] = fb_actions.create,
             ["m"] = fb_actions.move,
             ["y"] = fb_actions.copy,
