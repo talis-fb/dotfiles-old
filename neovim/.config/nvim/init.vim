@@ -66,8 +66,11 @@ Plug 'sbdchd/neoformat' "Prettier
 " Visuais
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'kyazdani42/nvim-web-devicons'
+
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'akinsho/bufferline.nvim'
+" Plug 'akinsho/bufferline.nvim'
+Plug 'romgrk/barbar.nvim'
+
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'mhinz/vim-startify'
 Plug 'p00f/nvim-ts-rainbow'
