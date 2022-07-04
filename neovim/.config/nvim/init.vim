@@ -47,7 +47,8 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
+Plug 'numToStr/Comment.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
@@ -87,6 +88,7 @@ lua require('pairs')
 lua require('lsp')
 lua require('file_explorer')
 lua require("which-key").setup()
+lua require('Comment').setup()
 " ----------------------------------------------------------------
 
 
