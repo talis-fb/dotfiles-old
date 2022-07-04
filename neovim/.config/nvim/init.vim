@@ -67,7 +67,10 @@ Plug 'sbdchd/neoformat' "Prettier
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'akinsho/bufferline.nvim'
+"
+" Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'noib3/nvim-cokeline'
+
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'mhinz/vim-startify'
 Plug 'p00f/nvim-ts-rainbow'
@@ -129,8 +132,8 @@ set nocompatible
 
 
 " ------- Fugitive ------------------------------------------------
-nnoremap gss :Git
-nnoremap gst :Git<CR>
+nnoremap gss :Git 
+nnoremap gst :Gtabedit :<CR>
 nnoremap gsc :Git commit<CR>
 nnoremap gsp :Git push<CR>
 nnoremap gsl :Git log --all --graph --decorate --oneline<CR>
@@ -158,7 +161,7 @@ endif
 " nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 map <silent><C-TAB> :exe "tabn ".g:lasttab<cr>
-vmap n :norm
+vmap n :norm 
 " ----------------------------------------------------------------
 
 

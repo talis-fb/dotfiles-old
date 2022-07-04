@@ -4,6 +4,11 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 
 
+-- # Pacotes necessários para serem instalados pelo npm
+-- @volar/vue-language-server
+-- typescript-language-server
+-- typescript
+-- vscode-langservers-extracted
 
 
 -- Configuração dos LSP
