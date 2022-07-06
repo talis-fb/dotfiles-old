@@ -49,6 +49,7 @@ end
 
 # Shortcut to Apps
 alias t="tmux"
+alias tt="tmux a || tmux" # Entra no tmux, mas se nao houver um server, cria um novo
 
 function cdr
     ranger $argv
