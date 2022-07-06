@@ -32,7 +32,7 @@ require('lualine').setup {
       lualine_y = {},
       lualine_z = {'tabs'}
   },
-  extensions = {'fugitive', 'fzf'}
+  extensions = {'fugitive'}
 }
 
 -- vim.api.nvim_set_keymap('n', '[cw', ':-tabmove<CR>', { noremap=noremap, silent = true })
