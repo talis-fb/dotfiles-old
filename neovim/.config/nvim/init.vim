@@ -64,8 +64,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat' "Prettier
 
 " Visuais
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-" Plug 'rebelot/kanagawa.nvim'
+Plug 'rebelot/kanagawa.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 
@@ -99,8 +98,12 @@ lua require('Comment').setup()
 
 
 let g:neoformat_try_node_exe = 1
-autocmd BufWritePre *.js,*.ts,*jsx,*tsx,*vue Neoformat
-
+" autocmd BufWritePre *.js,*.ts,*jsx,*tsx,*vue Neoformat
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * Neoformat
+augroup END
+" autocmd BufWritePre * undojoin | Neoformat
 
 " ----- Configurações básicas ------------------------------------
 set guifont=Ubuntu\ 12
@@ -148,7 +151,7 @@ nnoremap gsl :Git log --all --graph --decorate --oneline<CR>
 " ------- Theme ---------------------------------------------------
 syntax on
 set termguicolors     " enable true colors support
-colorscheme tokyonight
+colorscheme kanagawa
 " ----------------------------------------------------------------
 
 
