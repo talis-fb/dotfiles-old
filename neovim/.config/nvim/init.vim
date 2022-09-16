@@ -62,6 +62,7 @@ Plug 'folke/which-key.nvim'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat' "Prettier
+Plug 'michaeljsmith/vim-indent-object'
 
 " Visuais
 Plug 'rebelot/kanagawa.nvim'
