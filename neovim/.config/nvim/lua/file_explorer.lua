@@ -23,6 +23,7 @@ require("telescope").setup({
         theme = "ivy",
         path = "%:p:h",
         hide_parent_dir = true,
+        grouped = true,
         mappings = {
           ["i"] = {
             -- your custom insert mode mappings
