@@ -42,6 +42,9 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'onsails/lspkind-nvim'
 
+" Formatter
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
 " Funcoes
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
@@ -99,12 +102,25 @@ lua require('Comment').setup()
 
 
 let g:neoformat_try_node_exe = 1
-" autocmd BufWritePre *.js,*.ts,*jsx,*tsx,*vue Neoformat
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * Neoformat
-augroup END
+" autocmd BufWritePre *.ts Neoformat denofmt
+" augroup fmt
+"   autocmd!
+"   autocmd BufWritePre * Neoformat
+" augroup END
 " autocmd BufWritePre * undojoin | Neoformat
+
+" Neoformat for deno
+let s:denoFormatter = {
+      \ 'exe': 'deno',
+      \ 'args': ['fmt', '-'],
+      \ 'stdin': 1,
+      \ }
+
+let g:neoformat_javascript_deno = s:denoFormatter
+let g:neoformat_enabled_javascript = ['deno']
+let g:neoformat_typescript_deno = s:denoFormatter
+let g:neoformat_enabled_typescript = ['deno']
+
 
 " ----- Configurações básicas ------------------------------------
 set guifont=Ubuntu\ 12

@@ -10,11 +10,14 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 -- typescript
 -- vscode-langservers-extracted
 
+vim.g.markdown_fenced_languages = {
+  "ts=typescript"
+}
 
 -- Configuração dos LSP
 local lspconfig = require('lspconfig')
 -- local servers = { 'pyright', 'tsserver', 'vuels', 'html', 'jsonls', 'eslint', 'cssls', 'clangd' }
-local servers = { 'pyright', 'tsserver', 'html', 'jsonls', 'eslint', 'cssls', 'clangd', 'sumneko_lua' }
+local servers = { 'pyright', 'tsserver', 'html', 'jsonls', 'eslint', 'cssls', 'clangd', 'sumneko_lua', 'rust_analyzer', 'denols' }
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -22,10 +25,10 @@ local on_attach = function(client, bufnr)
   -- Shortcuts of LSP
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap=true, silent=true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', { noremap=true, silent=true })
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap=true, silent=true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { noremap=true, silent=true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', { noremap=true, silent=true })
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap=true, silent=true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap=true, silent=true })
 end
 
@@ -46,6 +49,28 @@ lspconfig['volar'].setup {
 -- luasnip setup
 local luasnip = require 'luasnip'
 
+
+
+
+-- Formatter
+local  null_ls = require('null-ls')
+
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
+local code_actions = null_ls.builtins.code_actions
+
+null_ls.setup({
+  on_attach = on_attach,
+
+  sources = {
+    formatting.autopep8,
+    formatting.prettier,
+    formatting.jq,
+    diagnostics.flake8,
+    code_actions.gitsigns,
+  }
+})
+--
 
 
 
