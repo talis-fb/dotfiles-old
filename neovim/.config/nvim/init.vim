@@ -59,6 +59,8 @@ Plug 'onsails/lspkind-nvim'
 " Formatter
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
+Plug 'folke/trouble.nvim'
+
 " Funcoes
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
@@ -113,7 +115,8 @@ lua require('file_explorer')
 lua require("which-key").setup()
 lua require('Comment').setup()
 lua require("mason").setup()
-lua require("mason-lspconfig").setup()
+lua require("mason-lspconfig").setup({ automatic_installation = false })
+lua require("trouble").setup({ position = "right", width = 70 })
 " ----------------------------------------------------------------
 
 
