@@ -36,10 +36,24 @@ call plug#begin()
 " LSP
 Plug 'nvim-lua/plenary.nvim'
 Plug 'neovim/nvim-lspconfig'
+
+" CMP
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+"Snippets
 Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+"
+"Mason
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+
+" ICONES
 Plug 'onsails/lspkind-nvim'
 
 " Formatter
@@ -91,35 +105,17 @@ call plug#end()
 lua require('maps')
 lua require('statusline')
 lua require('gitsigns').setup()
-" lua require("startscreen")
 lua require('pairs')
 lua require('lsp')
+lua require('formatter')
+lua require('snippets')
 lua require('file_explorer')
 lua require("which-key").setup()
 lua require('Comment').setup()
+lua require("mason").setup()
+lua require("mason-lspconfig").setup()
 " ----------------------------------------------------------------
 
-
-
-let g:neoformat_try_node_exe = 1
-" autocmd BufWritePre *.ts Neoformat denofmt
-" augroup fmt
-"   autocmd!
-"   autocmd BufWritePre * Neoformat
-" augroup END
-" autocmd BufWritePre * undojoin | Neoformat
-
-" Neoformat for deno
-let s:denoFormatter = {
-      \ 'exe': 'deno',
-      \ 'args': ['fmt', '-'],
-      \ 'stdin': 1,
-      \ }
-
-let g:neoformat_javascript_deno = s:denoFormatter
-let g:neoformat_enabled_javascript = ['deno']
-let g:neoformat_typescript_deno = s:denoFormatter
-let g:neoformat_enabled_typescript = ['deno']
 
 
 " ----- Configurações básicas ------------------------------------
