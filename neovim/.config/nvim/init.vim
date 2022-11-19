@@ -92,7 +92,7 @@ Plug 'nvim-lualine/lualine.nvim'
 " Plug 'noib3/nvim-cokeline'
 
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'mhinz/vim-startify'
+Plug 'talis-fb/vim-startify-jojo'
 Plug 'p00f/nvim-ts-rainbow'
 
 
