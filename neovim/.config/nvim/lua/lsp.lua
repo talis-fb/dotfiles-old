@@ -63,7 +63,7 @@ for _, server in ipairs(servers) do
     }
 
     if additional_settings then
-        for key, value in ipairs(additional_settings) do
+        for key, value in pairs(additional_settings) do
             setup[key] = value
         end
     end
