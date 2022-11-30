@@ -50,6 +50,10 @@ end
 # Shortcut to Apps
 alias t="tmux"
 alias tt="tmux a || tmux" # Entra no tmux, mas se nao houver um server, cria um novo
+alias ttp ="tmuxp load"
+
+alias p-sy="pipenv sync"
+alias p-sh="pipenv shell"
 
 function cdr
     ranger $argv

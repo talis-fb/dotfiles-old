@@ -1,0 +1,77 @@
+session_name: WISEFI
+start_directory: "${HOME}/work/nimus/repos"
+windows:
+  - window_name: Backend
+    start_directory: mvp-backend
+    panes:
+      - shell_command:
+        - bash start.sh
+
+  - window_name: Frontend/HEFESTO
+    panes:
+      - shell_command:
+        - cd mvp-frontend
+        - nvm use v16.15.1
+        - yarn start
+      - shell_command:
+        - cd mvp-services/hefesto
+        - nvm use v16.15.1
+        - yarn dev
+
+  - window_name: Events
+    start_directory: mvp-services
+    layout: even-horizontal
+    panes:
+      - shell_command:
+        - cd events/events_worker
+        - bash start.sh
+      - shell_command:
+        - cd events/connection_logs_api
+        - bash start.sh
+
+  - window_name: Devices
+    start_directory: mvp-services
+    panes:
+      - shell_command:
+        - cd devices
+        - bash start.sh
+
+  - window_name: Hermes
+    start_directory: mvp-services
+    panes:
+      - shell_command:
+        - cd hermes
+        - bash start.sh
+
+  - window_name: InCloud/Config
+    layout: even-horizontal
+    start_directory: mvp-services
+    # shell_command_before:
+    #   - docker-compose -f mvp/docker-compose.yml up -d
+    panes:
+      - shell_command:
+        - cd incloud
+        - bash start.sh
+      - shell_command:
+        - cd configuration
+        - bash start.sh
+
+  - window_name: Health/Statistics
+    start_directory: mvp-services
+    panes:
+      - shell_command:
+        - cd statistics
+        - bash start.sh
+      - shell_command:
+        - cd health
+        - bash start.sh
+
+  - window_name: Notify/Counters_worker
+    layout: even-horizontal
+    panes:
+      - shell_command:
+        - cd mvp-notify-service
+        - bash start.sh
+      - shell_command:
+        - cd mvp-services/counters_worker
+        - bash start.sh
