@@ -75,3 +75,13 @@ windows:
       - shell_command:
         - cd mvp-services/counters_worker
         - bash start.sh
+
+  - window_name: Atlas
+    start_directory: mvp-services
+    panes:
+      - shell_command:
+        - cd atlas
+        - pipenv sync
+        - pipenv sync --dev
+        - pipenv shell
+        - uvicorn main:app --port 5000 --host 0.0.0.0
