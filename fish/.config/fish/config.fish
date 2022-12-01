@@ -26,6 +26,12 @@ alias glog="git log"
 alias gpull="git pull"
 alias gpush="git push"
 alias gst="git status"
+alias gftch="git fetch"
+alias gftch="git fetch"
+alias gstash="git stash"
+alias greset="git reset"
+alias grestore="git restore"
+
 
 
 # Manage of dotfiles
