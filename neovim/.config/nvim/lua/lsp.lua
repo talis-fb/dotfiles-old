@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
         { noremap = true, silent = true })
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>',
         { noremap = true, silent = true })
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gr', '<cmd>lua vim.lsp.buf.references()<CR>',
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>gr', '<cmd>Trouble lsp_references<CR>',
         { noremap = true, silent = true })
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>',
         { noremap = true, silent = true })
@@ -34,7 +34,7 @@ local servers = {
     { 'rust_analyzer' },
     { 'html' },
     { 'jsonls' },
-    { 'eslint' },
+    -- { 'eslint' },
     { 'cssls' },
     { 'clangd' },
     { 'pyright',
