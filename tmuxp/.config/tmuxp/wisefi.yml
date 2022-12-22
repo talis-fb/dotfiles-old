@@ -82,3 +82,10 @@ windows:
       - shell_command:
         - cd atlas
         - bash start.sh
+
+  - window_name: Kong
+    start_directory: mvp-utils
+    panes:
+      - shell_command:
+        - cd kong
+        - bash start.sh
