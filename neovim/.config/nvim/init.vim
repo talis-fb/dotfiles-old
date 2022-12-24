@@ -1,10 +1,10 @@
 let mapleader=" "
 
 " au VimEnter * silent! !setxkbmap -option caps:escape
-au VimEnter * silent! AsyncRun setxkbmap -option caps:escape
+" au VimEnter * silent! AsyncRun setxkbmap -option caps:escape
 " au VimLeave * silent! !setxkbmap -option escape:caps
 
-" au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+" au VimEnter * silent! AsyncRun xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 " au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
 " Fazer o remap do Caps Lock é possivel com o PowerToy,
