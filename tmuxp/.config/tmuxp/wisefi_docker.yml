@@ -1,65 +1,65 @@
 session_name: DOCKERS
-start_directory: "${HOME}/work/nimus/dockers"
+start_directory: "${HOME}/work/wisefi_docker"
 windows:
   - window_name: Backend
     panes:
       - shell_command:
-        - sudo docker logs manager-access-api -f
+        - docker logs manager-access-api -f
 
   - window_name: Frontend/HEFESTO
     panes:
       - shell_command:
-        - sudo docker logs manager-front-end -f
+        - docker logs manager-front-end -f
       - shell_command:
-        - sudo docker logs manager-hefesto-api -f
+        - docker logs manager-hefesto-api -f
 
   - window_name: EventWorker/Connections
     layout: even-horizontal
     panes:
       - shell_command:
-        - sudo docker logs manager-event_worker-api -f
+        - docker logs manager-event_worker-api -f
       - shell_command:
-        - sudo docker logs manager-connection_logs-api -f
+        - docker logs manager-connection_logs-api -f
 
   - window_name: Devices
     panes:
       - shell_command:
-        - sudo docker logs manager-devices-api -f
+        - docker logs manager-devices-api -f
 
   - window_name: Hermes
     panes:
       - shell_command:
-        - sudo docker logs manager-hermes -f
+        - docker logs manager-hermes -f
 
   - window_name: InCloud/Config
     layout: even-horizontal
     panes:
       - shell_command:
-        - sudo docker logs manager-incloud -f
+        - docker logs manager-incloud -f
       - shell_command:
-        - sudo docker logs manager-configuration -f
+        - docker logs manager-configuration -f
 
   - window_name: Health/Statistics
     panes:
       - shell_command:
-        - sudo docker logs manager-health-api -f
+        - docker logs manager-health-api -f
       - shell_command:
-        - sudo docker logs manager-statistics-api -f
+        - docker logs manager-statistics-api -f
 
   - window_name: Notify/Counters_worker
     layout: even-horizontal
     panes:
       - shell_command:
-        - sudo docker logs manager-notify-api -f
+        - docker logs manager-notify-api -f
       - shell_command:
-        - sudo docker logs manager-counters_worker -f
+        - docker logs manager-counters_worker -f
 
   - window_name: Atlas
     panes:
       - shell_command:
-        - sudo docker logs manager-atlas -f
+        - docker logs manager-atlas -f
 
   - window_name: Kong
     panes:
       - shell_command:
-        - sudo docker logs manager-kong -f
+        - docker logs manager-kong -f

@@ -1,5 +1,5 @@
 session_name: WISEFI
-start_directory: "${HOME}/work/nimus/repos"
+start_directory: "${HOME}/work/wisefi"
 windows:
   - window_name: Backend
     start_directory: mvp-backend
