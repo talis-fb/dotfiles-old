@@ -33,11 +33,11 @@ local lspconfig = require('lspconfig')
 local servers = {
     { 'tsserver' },
     { 'denols' },
-    { 'sumneko_lua' },
+    { 'lua_ls' },
+    { 'jdtls' },
     { 'rust_analyzer' },
     { 'html' },
     { 'jsonls' },
-    -- { 'eslint' },
     { 'cssls' },
     { 'clangd' },
     { 'pyright',
