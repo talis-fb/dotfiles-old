@@ -2,7 +2,7 @@ session_name: WISEFI
 start_directory: "${HOME}/work/wisefi"
 windows:
   - window_name: Backend
-    start_directory: mvp-backend
+    start_directory: backend
     panes:
       - shell_command:
         - bash start.sh
@@ -10,16 +10,16 @@ windows:
   - window_name: Frontend/HEFESTO
     panes:
       - shell_command:
-        - cd mvp-frontend
+        - cd frontend
         - nvm use v16.15.1
         - yarn start
       - shell_command:
-        - cd mvp-services/hefesto
+        - cd services/hefesto
         - nvm use v16.15.1
         - yarn dev
 
   - window_name: Events
-    start_directory: mvp-services
+    start_directory: services
     layout: even-horizontal
     panes:
       - shell_command:
@@ -30,14 +30,14 @@ windows:
         - bash start.sh
 
   - window_name: Devices
-    start_directory: mvp-services
+    start_directory: services
     panes:
       - shell_command:
         - cd devices
         - bash start.sh
 
   - window_name: Hermes
-    start_directory: mvp-services
+    start_directory: services
     panes:
       - shell_command:
         - cd hermes
@@ -45,7 +45,7 @@ windows:
 
   - window_name: InCloud/Config
     layout: even-horizontal
-    start_directory: mvp-services
+    start_directory: services
     # shell_command_before:
     #   - docker-compose -f mvp/docker-compose.yml up -d
     panes:
@@ -57,7 +57,7 @@ windows:
         - bash start.sh
 
   - window_name: Health/Statistics
-    start_directory: mvp-services
+    start_directory: services
     panes:
       - shell_command:
         - cd statistics
@@ -70,21 +70,21 @@ windows:
     layout: even-horizontal
     panes:
       - shell_command:
-        - cd mvp-notify-service
+        - cd notify-service
         - bash start.sh
       - shell_command:
-        - cd mvp-services/counters_worker
+        - cd services/counters_worker
         - bash start.sh
 
   - window_name: Atlas
-    start_directory: mvp-services
+    start_directory: services
     panes:
       - shell_command:
         - cd atlas
         - bash start.sh
 
   - window_name: Kong
-    start_directory: mvp-utils
+    start_directory: utils
     panes:
       - shell_command:
         - cd kong
